@@ -4,7 +4,6 @@ Daniel Edwards
 fib.py
 A program that generates and prints the fibonacci sequence.
 '''
-
 import sys #importing so I can print without new lines or spaces
 
 '''
