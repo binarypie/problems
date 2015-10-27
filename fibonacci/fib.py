@@ -13,6 +13,8 @@ fib function.
 @param aTotal The desired place in the Fibonacci sequence to end at.
 '''
 def fibonacci(aTotal):
+    if(isinstance(aTotal, basestring)):
+       return
     if(aTotal <= 0):
         return
     elif(aTotal == 1):
