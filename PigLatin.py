@@ -103,5 +103,5 @@ def translate(word):
 
     return word
 
-userStr = raw_input("Enter string: ")
+userStr = input("Enter string: ")
 print(pigLatin(userStr))
