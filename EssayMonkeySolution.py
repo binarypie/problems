@@ -20,8 +20,8 @@ def generate_essay(num_parag, num_sent):
     # keep it to a reasonable range
     if target == 0:
         target = 1
-    elif target > 7:
-        target = 7
+    elif target > 5:
+        target = 5
 
     punctuation = ['.', '!', '?']
 
