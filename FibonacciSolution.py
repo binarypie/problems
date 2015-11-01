@@ -6,6 +6,11 @@ __author__ = 'joanhong'
 # place to generate fibonacci number to
 def fibonacci(place):
     previous = list([0]*(place+1))
+    if place > 1:
+        previous[1] = 1
+    elif place == 1:
+        # special case
+        sys.stdout.write("0")
     return fibonacci_helper(place, previous)
 
 
@@ -17,11 +22,12 @@ def fibonacci_helper(n, previous):
         # make sure only one call for n ==1 is printed
         if previous[n] == 0:
             previous[n] = 1
-        else:
             sys.stdout.write(", "+str(n))
     elif previous[n] == 0:
         previous[n] = fibonacci_helper(n-1, previous) + fibonacci_helper(n-2, previous)
         sys.stdout.write(", "+str(previous[n]))
+        if n == 2:
+            sys.stdout.write(", " + str(n-1))
     return previous[n]
 
 
