@@ -39,4 +39,5 @@ if __name__=="__main__":
         else:
             user_input = int(user_input)
             fibonacci(user_input-1)
+            sys.stdout.write("\n")
             running = False
