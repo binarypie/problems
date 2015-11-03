@@ -23,7 +23,7 @@ of paragraphs and sentences.
 """
 
 
-def essayMonkey(numParagraphs,numSentences):
+def essayMonkey(numParagraphs, numSentences):
     # Creates lists from provided text files
     essay = ""
     nounsList = open("EssayMonkeyNouns.txt")
@@ -46,7 +46,10 @@ def essayMonkey(numParagraphs,numSentences):
         while j < numSentences:
             paragraph += createSentence(nouns, verbs, adjectives)
             j += 1
-        essay += paragraph + "\n" + "\n"
+        if i == (numParagraphs - 1):
+            essay += paragraph
+        else:
+            essay += paragraph + "\n" + "\n"
         i += 1
 
     return essay
@@ -68,15 +71,15 @@ def createSentence(nouns, verbs, adjectives):
     sentence = ""
     randNum = random.random()
 
-    #Adds a random number of adjectives to the sentence
+    # Adds a random number of adjectives to the sentence
     while randNum < 0.7:
-            sentence = sentence + random.choice(adjectives) + " "
-            randNum = random.random()
+        sentence = sentence + random.choice(adjectives) + " "
+        randNum = random.random()
 
     sentence += random.choice(nouns) + " "
     sentence += random.choice(verbs) + " "
 
-    #Capitalize first letter
+    # Capitalize first letter
     sentence = sentence[0].capitalize() + sentence[1:len(sentence)-1] + "." + " "
 
     return sentence
