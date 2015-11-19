@@ -1,6 +1,6 @@
 # Logs
 
-Create a problem that parses Logs.txt and allows the user to search inclusivly and exclusivly by the following:
+Create a program that parses Logs.txt and allows the user to search inclusivly and exclusivly by the following:
 
 * OS
 * Browser
