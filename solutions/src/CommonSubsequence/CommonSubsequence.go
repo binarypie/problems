@@ -31,7 +31,7 @@ func subsequence(a, b string) string {
         }
     }
 
-    // traceback through table and read substring
+    // traceback through table and create sequence substring
     sstring := make([]rune, 0, lengths[a_len][b_len])
     for x, y := a_len, b_len; x != 0 && y != 0; {
         if lengths[x][y] == lengths[x-1][y] {
