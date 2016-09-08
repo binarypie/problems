@@ -66,7 +66,7 @@ func translate(orig string) string {
 
 func main() {
     // arguments
-    input := flag.String("input", "and hello world ghostway.", "string to translate")
+    input := flag.String("input", "HeLLo World! I can't wait to explore your VAST forests. The-End!", "string to translate")
     flag.Parse()
 
     var output []string
