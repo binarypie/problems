@@ -1,4 +1,4 @@
-package problem
+package problems
 
 import (
 	"bytes"
@@ -19,17 +19,12 @@ func CommonSubsequence(filepath string) ([]string, error) {
 		return nil, err
 	}
 
-	lcs, errs := findLongestSubsequence(content)
-	var errStr string
-	for _, e := range errs {
-		errStr = fmt.Sprintf("%s\n", e)
+	lcs, errors := findLongestSubsequence(content)
+	for _, e := range errors {
+		err = fmt.Errorf("%s%s\n", err, e)
 	}
 
-	if errStr != "" {
-		return lcs, fmt.Errorf("%s", errStr)
-	}
-
-	return lcs, nil
+	return lcs, err
 }
 
 func findLongestSubsequence(b []byte) ([]string, []error) {

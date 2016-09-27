@@ -1,4 +1,4 @@
-package problem
+package problems
 
 import (
 	"fmt"
@@ -17,7 +17,6 @@ func TestBuildEssayWithFileInputs(t *testing.T) {
 	if essay == nil {
 		t.Error("Expected essay not to be empty")
 	}
-	fmt.Printf("%s\n", essay)
 }
 
 func TestBuildEssay(t *testing.T) {

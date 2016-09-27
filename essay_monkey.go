@@ -1,4 +1,4 @@
-package problem
+package problems
 
 import (
 	"bytes"
@@ -59,15 +59,12 @@ func (e *Essay) Build(words ...string) error {
 		start, end = wordCapacityPerParagraph*(i+1), wordCapacityPerParagraph*(i+2)
 	}
 
-	var errStr string
+	var err error
 	for _, e := range errors {
-		errStr = fmt.Sprintf("%s\n", e)
+		err = fmt.Errorf("%s%s\n", err, e)
 	}
 
-	if errStr != "" {
-		return fmt.Errorf("%s", errStr)
-	}
-	return nil
+	return err
 }
 
 func (e *Essay) isLastParagraph(counter int) bool {
