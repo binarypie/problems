@@ -4,11 +4,35 @@
 
 * Words that start with a consonant have their first letter moved to the end of the word and the letters “ay” added to the end.
 * Words that start with a vowel have the letters “way” added to the end.
+! Check if 1st letter is consonant or vowel
 * Words that end in “way” are not modified.
+! special cases : -way, hyphens, single letters
 * Punctuation must remain in the same relative place from the end of the word.
 * Hyphens are treated as two words
 * Capitalization must remain in the same place.
+! Formattings : - Punctuation is same, Capitalization is same
 * Single letters are not modified.
+
+Steps:
+Put string in array
+analyze each word
+
+check if first letter is consonant or vowel
+if consonant
+  combine first letter with ay and add to end
+if vowel
+  add way to end
+
+if str == way then not modified
+if - then separate as two words during word analysis and put into function
+if length == 1 then not modified
+
+
+capitalization
+  if letter in word capitalized, store index of capitals
+  if punctuation exists, store index relative to end 
+
+
 
 ## Example Input ##
 
