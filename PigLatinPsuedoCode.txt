@@ -16,6 +16,7 @@
 Steps:
 Put string in array
 analyze each word
+when word is translated into pig latin, append to string
 
 check if first letter is consonant or vowel
 if consonant
@@ -30,7 +31,25 @@ if length == 1 then not modified
 
 capitalization
   if letter in word capitalized, store index of capitals
-  if punctuation exists, store index relative to end 
+  if punctuation exists, store index relative to end
+
+
+Psuedo code:
+function
+run through all words in array
+  if (formatting required)
+    return single letter word or word that's "way"
+  store capital index in stack
+  and any punctuation in second stack
+lowercase everything
+take punctuation out
+check if consonant or vowel
+  translate word into pig latin
+capitalize using stack
+add punctuation using stack
+append to final string
+
+
 
 
 
