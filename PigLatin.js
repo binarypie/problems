@@ -1,4 +1,4 @@
-var str = "Hello darkness my old friend. Can't stop wON't stop! Thien-Tam ditched us all. That is the way!";
+var str = "Hello darkness my old friend. Can't stop wON't stop! Tom-Tom ditched us all. That is the way!";
 var wordArray = [];
 var finalString = "";
 wordArray = str.split(" ");
