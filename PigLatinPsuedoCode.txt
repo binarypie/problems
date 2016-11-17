@@ -1,0 +1,62 @@
+# Pig Latin #
+
+> Write some code that translates a string (word, sentence, or paragraph) into “pig-latin” using the following rules.
+
+* Words that start with a consonant have their first letter moved to the end of the word and the letters “ay” added to the end.
+* Words that start with a vowel have the letters “way” added to the end.
+! Check if 1st letter is consonant or vowel
+* Words that end in “way” are not modified.
+! special cases : -way, hyphens, single letters
+* Punctuation must remain in the same relative place from the end of the word.
+* Hyphens are treated as two words
+* Capitalization must remain in the same place.
+! Formattings : - Punctuation is same, Capitalization is same
+* Single letters are not modified.
+
+Steps:
+Put string in array
+analyze each word
+when word is translated into pig latin, append to string
+
+check if first letter is consonant or vowel
+if consonant
+  combine first letter with ay and add to end
+if vowel
+  add way to end
+
+if str == way then not modified
+if - then separate as two words during word analysis and put into function
+if length == 1 then not modified
+
+
+capitalization
+  if letter in word capitalized, store index of capitals
+  if punctuation exists, store index relative to end
+
+
+Psuedo code:
+function
+run through all words in array
+  if (formatting required)
+    return single letter word or word that's "way"
+  store capital index in stack
+  and any punctuation in second stack
+lowercase everything
+take punctuation out
+check if consonant or vowel
+  translate word into pig latin
+capitalize using stack
+add punctuation using stack
+append to final string
+
+
+
+
+
+## Example Input ##
+
+    "HeLLo World! I can't wait to explore your VAST forests. The-End!"
+
+## Example Output ##
+
+    "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
