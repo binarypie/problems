@@ -15,3 +15,9 @@ defined as 0 and 1.
 ## Example Output ##
 
     0, 1, 1, 2, 3
+
+#Testing
+
+A simple go test suite is included and can be run with:
+
+ "go test"
