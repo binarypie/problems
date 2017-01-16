@@ -11,9 +11,9 @@ import (
 const (
 	STRING_MIN_LENGTH int = 10
 
-	ADJECTIVE_FILEPATH string = "./adjectives.txt"
-	VERB_FILEPATH      string = "./verbs.txt"
-	NOUN_FILEPATH      string = "./nouns.txt"
+	ADJECTIVE_FILEPATH string = "./EssayMonkeyAdjectives.txt"
+	VERB_FILEPATH      string = "./EssayMonkeyVerbs.txt"
+	NOUN_FILEPATH      string = "./EssayMonkeyNouns.txt"
 
 	PARAGRAPH_SEP string = "\r\n\r\n    "
 )
