@@ -18,7 +18,7 @@ def translate(str):
         #list of the form (i, punc_char) where punc_char is a punctuation character and i is
         #its location in the word
         punc_chars = reduce(
-            lambda acc, pair: acc + [pair] if pair[1] in PUNCTUATION else acc,
+            lambda p_char_list, pair: p_char_list + [pair] if pair[1] in PUNCTUATION else p_char_list,
             enumerate(word),
             [])
         #strip all punctuation characters from the word
@@ -41,12 +41,12 @@ def translate(str):
                 punc_index += 1
                 word = word[:punc_index] + pair[1] + word[punc_index:]
         return word
-    words = str.split(" ")
+    words = str.split()
     words = map(translate_word, words)
     return " ".join(words)
 
 if __name__ == "__main__":
-    input_filename = sys.argv
+    input_filename = sys.argv[1]
     with open(input_filename) as file:
         for line in file:
             print(translate(line))
