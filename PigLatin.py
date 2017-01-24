@@ -25,41 +25,41 @@ spaces = re.compile("\s|-")
 #
 # returns: translated string
 def translateWord(length, word, startsWithVowel) :
-	stackHead = 0
-	addition = ""
-	start = 0
-	firstLetter = word[0]
+    stackHead = 0
+    addition = ""
+    start = 0
+    firstLetter = word[0]
 
-	if startsWithVowel:
-		addition = "way"
-		start = 0
-	else : 
-		addition = "ay"
-		start = 1
+    if startsWithVowel:
+        addition = "way"
+        start = 0
+    else : 
+        addition = "ay"
+        start = 1
 
-	wordBuffer = [None] * (length + len(addition))
-	for i in range(start, length) :
-		charAtIndex = word[i]
-		if punctuation.match(charAtIndex) :
-			distFromEnd = length - i
-			wordBuffer[length + len(addition) - distFromEnd] = charAtIndex
-		else :
-			while wordBuffer[stackHead] : 
-				stackHead += 1
-			wordBuffer[stackHead] = charAtIndex
+    wordBuffer = [None] * (length + len(addition))
+    for i in range(start, length) :
+        charAtIndex = word[i]
+        if punctuation.match(charAtIndex) :
+            distFromEnd = length - i
+            wordBuffer[length + len(addition) - distFromEnd] = charAtIndex
+        else :
+            while wordBuffer[stackHead] : 
+                stackHead += 1
+            wordBuffer[stackHead] = charAtIndex
 
-	# add first letter back if needed
-	if not startsWithVowel : 
-		while wordBuffer[stackHead] : 
-			stackHead += 1
-		wordBuffer[stackHead] = firstLetter
+    # add first letter back if needed
+    if not startsWithVowel : 
+        while wordBuffer[stackHead] : 
+            stackHead += 1
+        wordBuffer[stackHead] = firstLetter
 
-	for letter in addition :
-		while wordBuffer[stackHead] : 
-			stackHead += 1
-		wordBuffer[stackHead] = letter
+    for letter in addition :
+        while wordBuffer[stackHead] : 
+            stackHead += 1
+        wordBuffer[stackHead] = letter
 
-	return ''.join(wordBuffer)
+    return ''.join(wordBuffer)
 
 
 # Takes in a word and decides how to translate it based on first letter
@@ -69,26 +69,26 @@ def translateWord(length, word, startsWithVowel) :
 #
 # returns: translated string
 def manageWord(word) :
-	length = len(word)
-	if length == 1:
-		return word
-		next
+    length = len(word)
+    if length == 1:
+        return word
+        next
 
-	firstLetter = word[0]
-	# case where punctuation starts off word
-	if punctuation.match(firstLetter) : 
-		for i in range(1, length):
-			if not punctuation.match(word[i]) and word[i] in vowels: 		
-					translated = translateWord(length, word, True)	
-					return(translated)
-	# case where first letter is vowel
-	elif firstLetter.lower() in vowels :
-		translated = translateWord(length, word, True)	
-		return(translated)
-	# case where first letter is consonant
-	else :
-		translated = translateWord(length, word, False)	
-		return(translated)
+    firstLetter = word[0]
+    # case where punctuation starts off word
+    if punctuation.match(firstLetter) : 
+        for i in range(1, length):
+            if not punctuation.match(word[i]) and word[i] in vowels:         
+                    translated = translateWord(length, word, True)    
+                    return(translated)
+    # case where first letter is vowel
+    elif firstLetter.lower() in vowels :
+        translated = translateWord(length, word, True)    
+        return(translated)
+    # case where first letter is consonant
+    else :
+        translated = translateWord(length, word, False)    
+        return(translated)
 
 
 result = []
@@ -96,16 +96,16 @@ result = []
 # Split the words by space and then by hyphen
 words = sys.argv[1].split()
 for wordsHypen in words :
-	splitWords = wordsHypen.split('-') 
-	# handle space-split words and hyphen-split separately
-	if len(splitWords) > 1 :
-		subResult = []
-		for word in splitWords:
-			translated = manageWord(word)
-			subResult.append(translated)
-		result.append('-'.join(subResult));
-	else:
-		translated = manageWord(wordsHypen)
-		result.append(translated)
+    splitWords = wordsHypen.split('-') 
+    # handle space-split words and hyphen-split separately
+    if len(splitWords) > 1 :
+        subResult = []
+        for word in splitWords:
+            translated = manageWord(word)
+            subResult.append(translated)
+        result.append('-'.join(subResult));
+    else:
+        translated = manageWord(wordsHypen)
+        result.append(translated)
 
 print " ".join(result)
