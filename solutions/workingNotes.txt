@@ -1,0 +1,12 @@
+Longest Common String:
+
+You never have to shrink the window; those smaller strings will implicitely never win. Transpose the window over if you fail to find something after a growth step.
+
+When the end boundary is at the end of the smaller string, you're done.
+
+After you find a match, grow the window. No need to check for matching sizes, I suppose.
+
+
+General:
+
+Add these pycharm hidden files to my gitignore.
