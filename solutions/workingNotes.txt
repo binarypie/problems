@@ -7,6 +7,27 @@ When the end boundary is at the end of the smaller string, you're done.
 After you find a match, grow the window. No need to check for matching sizes, I suppose.
 
 
+Common Subsequence:
+
+Remove characters in one sequence not found in the other. Hash table for efficiency?
+
+Start to look at this problem like a horrible spider web of possibilities. But, depending on where you find matches
+to a common character in the second string, each of those possibilities has a maximum "potential" that you don't
+have to work that hard for; the length of the string following the hit. You could do the first level and compute
+a potential for each hit. Then, find the actual length of the highest potential node, and wipe out all nodes with
+potentials lower than that actual. Check the next highest potential and repeat. If your actual becomes higher than
+all other potentials, or you are the last node standing you win that level.
+
+^This solution is beginning to feel very recursive in that each level down you have to dig is effectively another
+identical problem that you have to solve. Compute your answer and pass your result back up to the previous level.
+Each level you drill would pass slices of the left and right string as new source strings, to the right of the
+matched character, along with remembering what that character was. If I can think of an exit condition on a super
+basic comparison, I could work upwards from that.
+----------
+I ended up researching the problem before I spent too much effort developing the above theory. This appears to be a
+very well discussed exercise and was an interesting look in to Dynamic Programming. I developed this solution in python while using Wikipedia's Matlab algorithm for reference.
+
+
 General:
 
 Add these pycharm hidden files to my gitignore.
