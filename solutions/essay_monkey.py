@@ -1,4 +1,5 @@
-import random
+from random import randrange
+from random import sample
 import unittest
 import os
 
@@ -41,12 +42,21 @@ class EssayMonkey:
     def write_essay(self):
         """Produces an essay based on the current paragraph and sentence counts, using the words
             provided when the object was created"""
-        essay = ""
-        words_count = len(self._words)
+        words_range = len(self._words) + 1
 
-#        for _ in range(self._paragraph_count):
-#            for _ in range(self._sentence_count):
+        paragraphs = []
+        for _ in range(self._paragraph_count):
+            sentences = []
+            for _ in range(self._sentence_count):
+                sentence_length = randrange(4, 33)
+                words = [sample(self._words, 1)[0] for _ in range(sentence_length)]
+                sentence = ' '.join(words)
+                sentences.append(sentence)
 
+            paragraph = "{}{}".format(". ".join(sentences), '.')
+            paragraphs.append(paragraph)
+
+        essay = "{}{}".format("\t", "\n\t".join(paragraphs))
 
         return essay
 
@@ -104,12 +114,12 @@ class EssayMonkeyTests(unittest.TestCase):
     """Tests for the ``EssayMonkey`` class"""
 
     def test_write_essay_runs(self):
-        monkey = EssayMonkey(1, 1, "", word_reader=FakeWordReader(set()))
+        monkey = EssayMonkey(1, 1, "", word_reader=FakeWordReader({"test"}))
 
         monkey.write_essay()
 
     def test_write_essay_returns_string(self):
-        monkey = EssayMonkey(1, 1, "", word_reader=FakeWordReader(set()))
+        monkey = EssayMonkey(1, 1, "", word_reader=FakeWordReader({"test"}))
 
         actual = monkey.write_essay()
 
@@ -138,6 +148,14 @@ class EssayMonkeyTests(unittest.TestCase):
         actual = monkey.write_essay().count('.')
 
         self.assertEqual(expected, actual)
+
+    def test_essay_contains_test(self):
+        monkey = EssayMonkey(1, 1, "", word_reader=FakeWordReader({"test"}))
+        expected = "test"
+
+        actual = monkey.write_essay()
+
+        self.assertIn(expected, actual)
 
 
 if __name__ == '__main__':
