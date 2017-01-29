@@ -50,11 +50,22 @@ I'm getting pretty tempted to inject my dependency on the filesystem as I write 
 
 -----Scratch that, you actually can use args* in conjunction with optional parameters as of Python3, but you must name the argument when you pass it in. Let's go ahead and inject the file reader.
 
-The __init__ function of the EssayMonkey class looks a lot cleaner having taken the file reading.
+The __init__ function of the EssayMonkey class looks a lot cleaner having taken the file reading. Testing has also been cleaned up significantly.
 
 Let's use ''.join(<list>) over string concatenation wherever possible. The creation of dozens of intermediary strings (strings are immutable in Python) is probably near the top of the list of potential efficiency shortfalls in this exercise.
+
+
+Logs:
+
+Let's take a three class approach to ensure testibility and make things less complicated. A LogReader to take in the log file and output a list of LogItem objects. A LogItem that contains the original log entry as well as properties for each of the queryable aspects of the log. This will prevent us from needing to run expensive regular expressions multiple times throughout the life of the object, and indeed within the same query. Finally, a LogSearch class that handles requests and defines the logical searching procedures.
+
+I see that I can't use the FileWordReader from essay_monkey because I indulged in parsing logic within that class. Even the name of the class and the method, read_words(), tells us it isn't very reusable. Maybe that was best for such a small exercise, but I'll keep consequences like this in mind in the future.
 
 
 General:
 
 Add these pycharm hidden files to my gitignore.
+
+I've been stacking my test classes below the functionality up until now. I think it would make more sense at this point to separate them in to separate .py files. This will also get me the benefit of being able to run the test file from the command line during development, and still allow the ultimate user to run the process itself from command line.
+
+^Taking this a step further, super-generic utility classes like FileReader should be in their own module for reuse.
