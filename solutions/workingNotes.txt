@@ -28,6 +28,33 @@ I ended up researching the problem before I spent too much effort developing the
 very well discussed exercise and was an interesting look in to Dynamic Programming. I developed this solution in python while using Wikipedia's Matlab algorithm for reference.
 
 
+Essay Monkey:
+
+Just looking at the requirements, this is definitely something I would go back to my product owner for clarification for - there is a lot of detail missing. How should the words be put together? Will I need to add my own conjunctions like "and", "but", and "so"? The sentences are going to be pretty weird without them. I see some special characters in the verbs list ('\t','(',')','/'); should they be removed? Am I supposed to take a certain quantity of each type of word, or distinguish between them in any way? Or can I simply blend them all into a random set and pop off random words for each slot.
+
+Since I do not have access to any clarifying authority in the context of this exercise, I'll be making a set of assumptions to guide my development. These assumptions will use my best assumptions, but will slant towards "less effort" to avoid investing development time for something that wasn't asked for.
+
+Clarifying Requirements:
+-Consuming code can specify an arbitrary list of files to pull words from.
+-There is no distinction between these words or which file they came from.
+-A random word is selected each time, with reuse being okay.
+-I'll define "reasonable length" as 4-32 words.
+-No punctuation like commas or semicolons will be added.
+-Paragraphs will be separated by a newline, and start with a tab indent.
+-I will interpret "each [sentence] should not be the same length" to mean that, while every single sentence should not uniformly be the same length, it is okay if sentences happen to be the same length by chance.
+-While the input are from text files, the output will be returned from the function as a string.
+
+I'll take the approach of making a class that is constructed once with the length and file parameters, and exposes a GenerateEssay() function (or something to that extent) that can be called multiple times, perhaps with the option to modify the length input between calls. This should cut down on reading those source files with every run, and hide the implementation a bit in case we want to inject some of those dependencies in a later iteration (say, if the words ever need to come from a database).
+
+I'm getting pretty tempted to inject my dependency on the filesystem as I write these unit tests. Building up and tearing down the files like this is so much more arduous than a simple fake, and implicitly ends up testing the file reading in addition to the actual class logic (tightly coupled grossness). However didn't want to overcomplicate the call to the object by forcing users to type out some obtuse file reader object with every EssayMonkey object they make. "Poor man's depencency injection" was a no-go because I'm using a variable length args* input for the filenames, so it would have no way of distinguishing between the file_reader and the variable length arguments.
+
+-----Scratch that, you actually can use args* in conjunction with optional parameters as of Python3, but you must name the argument when you pass it in. Let's go ahead and inject the file reader.
+
+The __init__ function of the EssayMonkey class looks a lot cleaner having taken the file reading.
+
+Let's use ''.join(<list>) over string concatenation wherever possible. The creation of dozens of intermediary strings (strings are immutable in Python) is probably near the top of the list of potential efficiency shortfalls in this exercise.
+
+
 General:
 
 Add these pycharm hidden files to my gitignore.
