@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys
 
 
 def longest_common_string(first_str, second_str):
@@ -35,6 +37,10 @@ def longest_common_string(first_str, second_str):
     return longest_substring
 
 
+def main(first_string, second_string):
+    result = longest_common_string(first_string, second_string)
+    print(result)
 
 
 if __name__ == '__main__':
+    main(sys.argv[1], sys.argv[2])

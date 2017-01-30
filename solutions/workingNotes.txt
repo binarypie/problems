@@ -69,3 +69,5 @@ Add these pycharm hidden files to my gitignore.
 I've been stacking my test classes below the functionality up until now. I think it would make more sense at this point to separate them in to separate .py files. This will also get me the benefit of being able to run the test file from the command line during development, and still allow the ultimate user to run the process itself from command line.
 
 ^Taking this a step further, super-generic utility classes like FileReader should be in their own module for reuse.
+
+Go back and capitalize the first word of each sentence in EssayMonkey.

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys
 
 
 def create_subsequence_matrix(x_string, y_string):
@@ -52,6 +54,10 @@ def longest_common_subsequence(filename):
     return return_list
 
 
+def main(filename):
+    result = longest_common_subsequence(filename)
+    print(result)
 
 
 if __name__ == '__main__':
+    main(sys.argv[1])

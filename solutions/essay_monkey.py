@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys
 from random import randrange
 from random import sample
 
@@ -65,6 +67,13 @@ class EssayMonkey:
         self._sentence_count = sentence_count
 
 
+def main(paragraph_count, sentence_count, *files):
+    monkey = EssayMonkey(paragraph_count, sentence_count, *files)
+    result = monkey.write_essay()
+    print(result)
 
 
 if __name__ == '__main__':
+    file_names = sys.argv[3:len(sys.argv) + 1]
+    file_name_tuple = tuple(file_names)
+    main(int(sys.argv[1]), int(sys.argv[2]), *file_name_tuple)
