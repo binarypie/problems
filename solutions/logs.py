@@ -52,7 +52,24 @@ class LogItem:
     def entry(self):
         return self._entry
 
-# class LogSearch:
+
+class LogSearch:
+    def __init__(self):
+        self._strategy = ""
+
+    def execute(self):
+        return []
+
+    def inclusive(self):
+        self._strategy = "excl"
+        return self
+
+    def exclusive(self):
+        self._strategy = "incl"
+        return self
+
+    def ip(self, query):
+        return self
 
 
 if __name__ == '__main__':

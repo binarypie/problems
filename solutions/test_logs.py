@@ -112,7 +112,55 @@ class LogItemTests(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
-# class LogSearchTests(unittest.TestCase):
+class FakeLogReader:
+    def read_log(self, filename):
+        self.item1 = LogItem('111.1.1.1 [01/Jan/2017:01:00:00] "TEST /TEST1.test HTTP/1.1" 200 0 "http://test1.com" ')
+        self.item2 = LogItem('222.2.2.2 [02/Jan/2017:02:00:00] "TEST /TEST2.test HTTP/1.1" 200 0 "http://test2.com" ')
+        self.item3 = LogItem('333.3.3.3 [03/Jan/2017:03:00:00] "TEST /TEST3.test HTTP/1.1" 200 0 "http://test3.com" ')
+
+        return [self.item1, self.item2, self.item3]
+
+
+class LogSearchTests(unittest.TestCase):
+    def test_object_builds(self):
+        LogSearch()
+
+    def test_execute_runs(self):
+        search = LogSearch()
+
+        search.execute()
+
+    def test_execute_before_query_returns_empty(self):
+        search = LogSearch()
+        expected = []
+
+        actual = search.execute()
+
+        self.assertEqual(expected, actual)
+
+    def test_inclusive_returns_original_object(self):
+        search = LogSearch()
+        expected = search
+
+        actual = search.inclusive()
+
+        self.assertIs(expected, actual)
+
+    def test_exclusive_returns_original_object(self):
+        search = LogSearch()
+        expected = search
+
+        actual = search.exclusive()
+
+        self.assertIs(expected, actual)
+
+    def test_ip_returns_correct_entry(self):
+        search = LogSearch()
+        expected = "111.1.1.1"
+
+        actual = search.ip("111.1.1.1").execute()
+
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
