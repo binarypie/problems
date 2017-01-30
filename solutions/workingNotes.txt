@@ -67,6 +67,14 @@ I'm having trouble completely understanding the OS and Browser part of the log s
 
 If it is the case that a single expression can not match any arbitrary log entry, I would work with my product owner to determine which user types needed to be identified, make expressions that match only that user type, and cycle through available expressions looking for a match. Anything else deemed non-critical would be filed under 'other'.
 
+As for the actual query, let's implement our algorithm using some fun method-chaining strategies. The LogSearch object will start out with it's list of LogItem objects, and a blank query slate. First set the search type as inclusive or exclusive, and stack as many query items as you want using subsequent method calls to specify values for different parameters. Each of these methods returns the object itself, enabling this behavior. You can't change the inclusivity mid-query, and some sort of trigger method will return the results and clear the query out.
+
+I'm going to use sets for efficient and / or processing.
+
+Exclusive or Inclusive could feasibly be added before the second parameter is added. It isn't needed before then in the case of single parameter queries.
+
+Use only the entry when you're building up the result set. You don't need anything else for your results, and the contents of the log entries aren't really doing you any favors as far as hashing goes (attributes are mostly the same, lots of collisions).
+
 
 General:
 
