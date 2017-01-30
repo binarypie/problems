@@ -61,6 +61,12 @@ Let's take a three class approach to ensure testibility and make things less com
 
 I see that I can't use the FileWordReader from essay_monkey because I indulged in parsing logic within that class. Even the name of the class and the method, read_words(), tells us it isn't very reusable. Maybe that was best for such a small exercise, but I'll keep consequences like this in mind in the future.
 
+I'm going to go for a Regular Expression with named capture groups as far as parsing each individual log entry goes. The expression is going to be just awful, but it will get our needed data out of each string and turn it in to a much simpler property matching exercise.
+
+I'm having trouble completely understanding the OS and Browser part of the log string. The best patterns I can find individually seem to contradict each other between different logs. I'm going to eat around this problem for now and move forward with matching and searching with the other four aspects for now, doing my best to keep my implementation flexible to accept more parameters later.
+
+If it is the case that a single expression can not match any arbitrary log entry, I would work with my product owner to determine which user types needed to be identified, make expressions that match only that user type, and cycle through available expressions looking for a match. Anything else deemed non-critical would be filed under 'other'.
+
 
 General:
 
