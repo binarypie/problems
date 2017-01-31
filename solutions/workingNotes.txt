@@ -73,7 +73,9 @@ I'm going to use sets for efficient and / or processing.
 
 Exclusive or Inclusive could feasibly be added before the second parameter is added. It isn't needed before then in the case of single parameter queries.
 
-Use only the entry when you're building up the result set. You don't need anything else for your results, and the contents of the log entries aren't really doing you any favors as far as hashing goes (attributes are mostly the same, lots of collisions).
+Use only the entry when you're building up the result set. You don't need anything else for your results, and the contents of the log entries aren't really doing you any favors as far as hashing goes (attributes are mostly the same; lots of collisions).
+
+I see that the search parameter methods are turning out to be completely identical except for how they determine a match when querying the original set. Because I'll be adding complex logic to each of these, I ought to pull the meat of these functions in to a private method that accepts a lambda expression to perform the matching.
 
 
 General:

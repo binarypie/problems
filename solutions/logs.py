@@ -54,11 +54,13 @@ class LogItem:
 
 
 class LogSearch:
-    def __init__(self):
+    def __init__(self, filename, log_reader=LogReader()):
         self._strategy = ""
+        self._log_items = log_reader.read_log(filename)
+        self._results = set()
 
     def execute(self):
-        return []
+        return list(self._results)
 
     def inclusive(self):
         self._strategy = "excl"
@@ -68,7 +70,36 @@ class LogSearch:
         self._strategy = "incl"
         return self
 
+    def _step_query(self, query, filter_func):
+        if self._results and not self._strategy:
+            raise SyntaxError("Two queries were performed without setting the strategy")
+
+        matches = set([log.entry() for log in self._log_items if (filter_func(query, log))])
+        self._results = matches
+
     def ip(self, query):
+        filter_func = lambda qry, log: qry in log.ip()
+        self._step_query(query, filter_func)
+        return self
+
+    def date(self, query):
+        filter_func = lambda qry, log: qry == log.date()
+        self._step_query(query, filter_func)
+        return self
+
+    def time(self, query):
+        filter_func = lambda qry, log: qry == log.time()
+        self._step_query(query, filter_func)
+        return self
+
+    def file(self, query):
+        filter_func = lambda qry, log: qry in log.file()
+        self._step_query(query, filter_func)
+        return self
+
+    def referrer(self, query):
+        filter_func = lambda qry, log: qry in log.referrer()
+        self._step_query(query, filter_func)
         return self
 
 

@@ -103,7 +103,7 @@ class LogItemTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_contains_referer(self):
+    def test_contains_referrer(self):
         log_item = LogItem(self.test_log_string)
         expected = "http://test.com/tester"
 
@@ -112,26 +112,27 @@ class LogItemTests(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
+log1 = '111.1.1.1 [01/Jan/2017:01:00:00] "TEST /TEST1.test HTTP/1.1" 200 0 "http://test1.com" '
+log2 = '222.2.2.2 [02/Jan/2017:02:00:00] "TEST /TEST2.test HTTP/1.1" 200 0 "http://test2.com" '
+log3 = '333.3.3.3 [03/Jan/2017:03:00:00] "TEST /TEST3.test HTTP/1.1" 200 0 "http://test3.com" '
+
+
 class FakeLogReader:
     def read_log(self, filename):
-        self.item1 = LogItem('111.1.1.1 [01/Jan/2017:01:00:00] "TEST /TEST1.test HTTP/1.1" 200 0 "http://test1.com" ')
-        self.item2 = LogItem('222.2.2.2 [02/Jan/2017:02:00:00] "TEST /TEST2.test HTTP/1.1" 200 0 "http://test2.com" ')
-        self.item3 = LogItem('333.3.3.3 [03/Jan/2017:03:00:00] "TEST /TEST3.test HTTP/1.1" 200 0 "http://test3.com" ')
-
-        return [self.item1, self.item2, self.item3]
+        return [LogItem(log1), LogItem(log2), LogItem(log3)]
 
 
 class LogSearchTests(unittest.TestCase):
     def test_object_builds(self):
-        LogSearch()
+        LogSearch("", FakeLogReader())
 
     def test_execute_runs(self):
-        search = LogSearch()
+        search = LogSearch("", FakeLogReader())
 
         search.execute()
 
     def test_execute_before_query_returns_empty(self):
-        search = LogSearch()
+        search = LogSearch("", FakeLogReader())
         expected = []
 
         actual = search.execute()
@@ -139,7 +140,7 @@ class LogSearchTests(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_inclusive_returns_original_object(self):
-        search = LogSearch()
+        search = LogSearch("", FakeLogReader())
         expected = search
 
         actual = search.inclusive()
@@ -147,7 +148,7 @@ class LogSearchTests(unittest.TestCase):
         self.assertIs(expected, actual)
 
     def test_exclusive_returns_original_object(self):
-        search = LogSearch()
+        search = LogSearch("", FakeLogReader())
         expected = search
 
         actual = search.exclusive()
@@ -155,12 +156,79 @@ class LogSearchTests(unittest.TestCase):
         self.assertIs(expected, actual)
 
     def test_ip_returns_correct_entry(self):
-        search = LogSearch()
-        expected = "111.1.1.1"
+        search = LogSearch("", FakeLogReader())
+        expected = log1
 
-        actual = search.ip("111.1.1.1").execute()
+        actual = search\
+            .ip("111.1.1.1")\
+            .execute()
 
-        self.assertEqual(expected, actual)
+        self.assertEqual(1, len(actual))
+        self.assertEqual(expected, actual[0])
+
+    def test_date_returns_correct_entry(self):
+        search = LogSearch("", FakeLogReader())
+        expected = log2
+
+        actual = search\
+            .date("02/Jan/2017")\
+            .execute()
+
+        self.assertEqual(1, len(actual))
+        self.assertEqual(expected, actual[0])
+
+    def test_time_returns_correct_entry(self):
+        search = LogSearch("", FakeLogReader())
+        expected = log3
+
+        actual = search\
+            .time("03:00:00")\
+            .execute()
+
+        self.assertEqual(1, len(actual))
+        self.assertEqual(expected, actual[0])
+
+    def test_file_returns_correct_entry(self):
+        search = LogSearch("", FakeLogReader())
+        expected = log1
+
+        actual = search\
+            .file("TEST1.test")\
+            .execute()
+
+        self.assertEqual(1, len(actual))
+        self.assertEqual(expected, actual[0])
+
+    def test_referrer_returns_correct_entry(self):
+        search = LogSearch("", FakeLogReader())
+        expected = log2
+
+        actual = search\
+            .referrer("http://test2.com")\
+            .execute()
+
+        self.assertEqual(1, len(actual))
+        self.assertEqual(expected, actual[0])
+
+    def test_two_queries_before_strategy_fails(self):
+        search = LogSearch("", FakeLogReader())
+
+        with self.assertRaises(SyntaxError):
+            search.ip("").referrer("")
+
+    def test_two_queries_with_exclusive_passes(self):
+        search = LogSearch("", FakeLogReader())
+        search\
+            .ip("")\
+            .exclusive()\
+            .referrer("")
+
+    def test_two_queries_with_inclusive_passes(self):
+        search = LogSearch("", FakeLogReader())
+        search\
+            .inclusive()\
+            .ip("")\
+            .referrer("")
 
 
 if __name__ == '__main__':
