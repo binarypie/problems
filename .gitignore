@@ -5,3 +5,7 @@
 Session.vim
 .netrwhist
 *~
+
+*.pyc
+
+solutions/\.idea/workspace\.xml

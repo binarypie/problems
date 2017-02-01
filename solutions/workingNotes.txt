@@ -1,0 +1,115 @@
+Longest Common String:
+
+You never have to shrink the window; those smaller strings will implicitely never win. Transpose the window over if you fail to find something after a growth step.
+
+When the end boundary is at the end of the smaller string, you're done.
+
+After you find a match, grow the window. No need to check for matching sizes, I suppose.
+
+
+Common Subsequence:
+
+Remove characters in one sequence not found in the other. Hash table for efficiency?
+
+Start to look at this problem like a horrible spider web of possibilities. But, depending on where you find matches
+to a common character in the second string, each of those possibilities has a maximum "potential" that you don't
+have to work that hard for; the length of the string following the hit. You could do the first level and compute
+a potential for each hit. Then, find the actual length of the highest potential node, and wipe out all nodes with
+potentials lower than that actual. Check the next highest potential and repeat. If your actual becomes higher than
+all other potentials, or you are the last node standing you win that level.
+
+^This solution is beginning to feel very recursive in that each level down you have to dig is effectively another
+identical problem that you have to solve. Compute your answer and pass your result back up to the previous level.
+Each level you drill would pass slices of the left and right string as new source strings, to the right of the
+matched character, along with remembering what that character was. If I can think of an exit condition on a super
+basic comparison, I could work upwards from that.
+----------
+I ended up researching the problem before I spent too much effort developing the above theory. This appears to be a
+very well discussed exercise and was an interesting look in to Dynamic Programming. I developed this solution in python while using Wikipedia's Matlab algorithm for reference.
+
+
+Essay Monkey:
+
+Just looking at the requirements, this is definitely something I would go back to my product owner for clarification for - there is a lot of detail missing. How should the words be put together? Will I need to add my own conjunctions like "and", "but", and "so"? The sentences are going to be pretty weird without them. I see some special characters in the verbs list ('\t','(',')','/'); should they be removed? Am I supposed to take a certain quantity of each type of word, or distinguish between them in any way? Or can I simply blend them all into a random set and pop off random words for each slot.
+
+Since I do not have access to any clarifying authority in the context of this exercise, I'll be making a set of assumptions to guide my development. These assumptions will use my best assumptions, but will slant towards "less effort" to avoid investing development time for something that wasn't asked for.
+
+Clarifying Requirements:
+-Consuming code can specify an arbitrary list of files to pull words from.
+-There is no distinction between these words or which file they came from.
+-A random word is selected each time, with reuse being okay.
+-I'll define "reasonable length" as 4-32 words.
+-No punctuation like commas or semicolons will be added.
+-Paragraphs will be separated by a newline, and start with a tab indent.
+-I will interpret "each [sentence] should not be the same length" to mean that, while every single sentence should not uniformly be the same length, it is okay if sentences happen to be the same length by chance.
+-While the input are from text files, the output will be returned from the function as a string.
+
+I'll take the approach of making a class that is constructed once with the length and file parameters, and exposes a GenerateEssay() function (or something to that extent) that can be called multiple times, perhaps with the option to modify the length input between calls. This should cut down on reading those source files with every run, and hide the implementation a bit in case we want to inject some of those dependencies in a later iteration (say, if the words ever need to come from a database).
+
+I'm getting pretty tempted to inject my dependency on the filesystem as I write these unit tests. Building up and tearing down the files like this is so much more arduous than a simple fake, and implicitly ends up testing the file reading in addition to the actual class logic (tightly coupled grossness). However didn't want to overcomplicate the call to the object by forcing users to type out some obtuse file reader object with every EssayMonkey object they make. "Poor man's depencency injection" was a no-go because I'm using a variable length args* input for the filenames, so it would have no way of distinguishing between the file_reader and the variable length arguments.
+
+-----Scratch that, you actually can use args* in conjunction with optional parameters as of Python3, but you must name the argument when you pass it in. Let's go ahead and inject the file reader.
+
+The __init__ function of the EssayMonkey class looks a lot cleaner having taken the file reading. Testing has also been cleaned up significantly.
+
+Let's use ''.join(<list>) over string concatenation wherever possible. The creation of dozens of intermediary strings (strings are immutable in Python) is probably near the top of the list of potential efficiency shortfalls in this exercise.
+
+
+Logs:
+
+Let's take a three class approach to ensure testibility and make things less complicated. A LogReader to take in the log file and output a list of LogItem objects. A LogItem that contains the original log entry as well as properties for each of the queryable aspects of the log. This will prevent us from needing to run expensive regular expressions multiple times throughout the life of the object, and indeed within the same query. Finally, a LogSearch class that handles requests and defines the logical searching procedures.
+
+I see that I can't use the FileWordReader from essay_monkey because I indulged in parsing logic within that class. Even the name of the class and the method, read_words(), tells us it isn't very reusable. Maybe that was best for such a small exercise, but I'll keep consequences like this in mind in the future.
+
+I'm going to go for a Regular Expression with named capture groups as far as parsing each individual log entry goes. The expression is going to be just awful, but it will get our needed data out of each string and turn it in to a much simpler property matching exercise.
+
+I'm having trouble completely understanding the OS and Browser part of the log string. The best patterns I can find individually seem to contradict each other between different logs. I'm going to eat around this problem for now and move forward with matching and searching with the other four aspects for now, doing my best to keep my implementation flexible to accept more parameters later.
+
+If it is the case that a single expression can not match any arbitrary log entry, I would work with my product owner to determine which user types needed to be identified, make expressions that match only that user type, and cycle through available expressions looking for a match. Anything else deemed non-critical would be filed under 'other'.
+
+As for the actual query, let's implement our algorithm using some fun method-chaining strategies. The LogSearch object will start out with it's list of LogItem objects, and a blank query slate. First set the search type as inclusive or exclusive, and stack as many query items as you want using subsequent method calls to specify values for different parameters. Each of these methods returns the object itself, enabling this behavior. You can't change the inclusivity mid-query, and some sort of trigger method will return the results and clear the query out.
+
+I'm going to use sets for efficient and / or processing.
+
+Exclusive or Inclusive could feasibly be added before the second parameter is added. It isn't needed before then in the case of single parameter queries.
+
+Use only the entry when you're building up the result set. You don't need anything else for your results, and the contents of the log entries aren't really doing you any favors as far as hashing goes (attributes are mostly the same; lots of collisions).
+
+I see that the search parameter methods are turning out to be completely identical except for how they determine a match when querying the original set. Because I'll be adding complex logic to each of these, I ought to pull the meat of these functions in to a private method that accepts a lambda expression to perform the matching.
+
+OH! There's a delicious optimization I can do here. Rather than hold on to the current state of the results via their actual string representations, I can use sets of their integer index in the list of log entries. That should make all those set computations massively less costly. Also, because I have so many unit tests in place, upending the internal implementation like this is must less risky; as long as my tests still pass, I know everything is alright.
+
+I won't be adding command-line execution for LogSearch. The complexity of the querying process (n number of parameters, using an optional strategy, with the same parameter invokable multiple times) would make the command line parsing logic prohibitively complex and of limited usefulness.
+
+Clear out the object state (sans the list of log entries) after query execution to make way for the next query.
+
+
+Pig Latin:
+
+I'll make the assumption that if a word starts in a number or special character, it is unparsable and should raise an exception.
+
+I feel like the biggest trick here is dealing with the potential of a hyphen. That kind of breaks all my happy assumptions about splitting in to a list of words, doing the work, then stitching them back together using strings....
+
+Idea! It's a bit out there, but may just be crazy enough to work. Inside my pig_word() function, have a check for hyphens, if there is one, split that word on hyphen and make a -recursive call- to pig_word(), then stitch the word back together with hyphens. (Hillarious, it actually worked.)
+
+^This would not be sustainable in the case that more separators were added, but since we happen to have only one to deal with, this is a quick and simple solution to the problem.
+
+I don't really need to know where the punctuation was before, just that the string grew by some amount (2 or 3), and that I need to move it forward three steps to keep it consistent with the end of the word.
+.... unless its at the beginning of the word? I can't think of any use cases for that, so I'll ignore that possibility for now.
+
+Is there any intra-word punctuation in the English language besides hyphens and apostrophes? I'll go ahead and just leave it at apostrophes, but do so in a "list contains" sort of way to make it easier for quick addition of punctuation identified later.
+
+I'm concerned about the possibility of multiple instances of the same punctuation. Or what if a punctuation ends up in a slot that's supposed to be capitalized?? Again, I can't think of any plausible use cases for this.
+
+Sentence punctuation getting roped in to the translation was a problem. Since I prepped for this possibility beforehand (see above), I'll just add more characters to my punctuation list, which should shuttle them to the back of the string for no extra effort.
+
+
+General:
+
+Add these pycharm hidden files to my gitignore.
+
+I've been stacking my test classes below the functionality up until now. I think it would make more sense at this point to separate them in to separate .py files. This will also get me the benefit of being able to run the test file from the command line during development, and still allow the ultimate user to run the process itself from command line.
+
+^Taking this a step further, super-generic utility classes like FileReader should be in their own module for reuse.
+
+Go back and capitalize the first word of each sentence in EssayMonkey.
