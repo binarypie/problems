@@ -84,6 +84,26 @@ I won't be adding command-line execution for LogSearch. The complexity of the qu
 Clear out the object state (sans the list of log entries) after query execution to make way for the next query.
 
 
+Pig Latin:
+
+I'll make the assumption that if a word starts in a number or special character, it is unparsable and should raise an exception.
+
+I feel like the biggest trick here is dealing with the potential of a hyphen. That kind of breaks all my happy assumptions about splitting in to a list of words, doing the work, then stitching them back together using strings....
+
+Idea! It's a bit out there, but may just be crazy enough to work. Inside my pig_word() function, have a check for hyphens, if there is one, split that word on hyphen and make a -recursive call- to pig_word(), then stitch the word back together with hyphens. (Hillarious, it actually worked.)
+
+^This would not be sustainable in the case that more separators were added, but since we happen to have only one to deal with, this is a quick and simple solution to the problem.
+
+I don't really need to know where the punctuation was before, just that the string grew by some amount (2 or 3), and that I need to move it forward three steps to keep it consistent with the end of the word.
+.... unless its at the beginning of the word? I can't think of any use cases for that, so I'll ignore that possibility for now.
+
+Is there any intra-word punctuation in the English language besides hyphens and apostrophes? I'll go ahead and just leave it at apostrophes, but do so in a "list contains" sort of way to make it easier for quick addition of punctuation identified later.
+
+I'm concerned about the possibility of multiple instances of the same punctuation. Or what if a punctuation ends up in a slot that's supposed to be capitalized?? Again, I can't think of any plausible use cases for this.
+
+Sentence punctuation getting roped in to the translation was a problem. Since I prepped for this possibility beforehand (see above), I'll just add more characters to my punctuation list, which should shuttle them to the back of the string for no extra effort.
+
+
 General:
 
 Add these pycharm hidden files to my gitignore.
