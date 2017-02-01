@@ -51,7 +51,8 @@ class EssayMonkey:
                 sentence_length = randrange(4, 33)
                 words = [sample(self._words, 1)[0] for _ in range(sentence_length)]
                 sentence = ' '.join(words)
-                sentences.append(sentence)
+                cap_sentence = "{}{}".format(sentence[0].upper(), sentence[1:])
+                sentences.append(cap_sentence)
 
             paragraph = "{}{}".format(". ".join(sentences), '.')
             paragraphs.append(paragraph)

@@ -2,11 +2,19 @@
 import sys
 
 
-def pig_word(input_str):
-    """Takes a single word and translates it to pig-latin"""
+def pig_latin(input_str):
+    """Takes a single string as input and translates it to pig-latin."""
+    if not input_str:
+        return input_str
+
+    if ' ' in input_str:
+        words = input_str.split(' ')
+        pig_words = [pig_latin(word) for word in words]
+        return ' '.join(pig_words)
+
     if '-' in input_str:
         words = input_str.split('-')
-        pig_words = [pig_word(word) for word in words]
+        pig_words = [pig_latin(word) for word in words]
         return '-'.join(pig_words)
 
     if len(input_str) == 1:
@@ -23,7 +31,7 @@ def pig_word(input_str):
     else:
         result = lower_input + "way"
 
-    punctuation = [punc for punc in ['\'', '.', '!', '?', ':', ';', '/', '%'] if punc in result]
+    punctuation = [punc for punc in ['\'', ',', '.', '!', '?', ':', ';', '/', '%'] if punc in result]
     for punc in punctuation:
         i = result.index(punc)
         pre_string = result[:i]
@@ -35,18 +43,6 @@ def pig_word(input_str):
         result_list[i] = result_list[i].upper()
 
     return ''.join(result_list)
-
-
-def pig_latin(input_str):
-    """Takes a single string as input and translates it to pig-latin."""
-    if not input_str:
-        return input_str
-
-    words = input_str.split(' ')
-    pig_words = [pig_word(word) for word in words]
-    translated = ' '.join(pig_words)
-
-    return translated
 
 
 def main(first_string):
