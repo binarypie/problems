@@ -31,6 +31,12 @@ class LogItem:
             self._time = match.group("time")
             self._file = match.group("file")
             self._referrer = match.group("referrer")
+        else:
+            self._ip = ""
+            self._date = ""
+            self._time = ""
+            self._file = ""
+            self._referrer = ""
 
         self._entry = log_entry
 
@@ -55,12 +61,17 @@ class LogItem:
 
 class LogSearch:
     def __init__(self, filename, log_reader=LogReader()):
-        self._strategy = ""
         self._log_items = log_reader.read_log(filename)
+        self._strategy = ""
         self._results = set()
 
     def execute(self):
-        return [self._log_items[i].entry() for i in self._results]
+        query_result = [self._log_items[i].entry() for i in self._results]
+
+        self._strategy = ""
+        self._results = set()
+
+        return query_result
 
     def inclusive(self):
         self._strategy = "incl"

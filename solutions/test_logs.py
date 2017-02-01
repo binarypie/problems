@@ -248,17 +248,6 @@ class LogSearchTests(unittest.TestCase):
 
         self.assertEqual(expected, set(actual))
 
-    def test_ip_or_ip(self):
-        search = LogSearch("", FakeLogReader())
-        expected = {log1, log2}
-
-        actual = search.inclusive()\
-            .ip("111.1.1.1")\
-            .ip("222.2.2.2")\
-            .execute()
-
-        self.assertEqual(expected, set(actual))
-
     def test_ip_and_ip(self):
         search = LogSearch("", FakeLogReader())
         expected = []
@@ -288,6 +277,18 @@ class LogSearchTests(unittest.TestCase):
         actual = search.exclusive()\
             .file("TEST3.test")\
             .referrer("http://test2.com")\
+            .execute()
+
+        self.assertEqual(expected, set(actual))
+
+    def test_second_query(self):
+        search = LogSearch("", FakeLogReader())
+        expected = {log2}
+
+        search.inclusive().ip("111.1.1.1").execute()
+
+        actual = search.inclusive()\
+            .ip("222.2.2.2")\
             .execute()
 
         self.assertEqual(expected, set(actual))
