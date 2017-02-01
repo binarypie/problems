@@ -115,11 +115,18 @@ class LogItemTests(unittest.TestCase):
 log1 = '111.1.1.1 [01/Jan/2017:01:00:00] "TEST /TEST1.test HTTP/1.1" 200 0 "http://test1.com" '
 log2 = '222.2.2.2 [02/Jan/2017:02:00:00] "TEST /TEST2.test HTTP/1.1" 200 0 "http://test2.com" '
 log3 = '333.3.3.3 [03/Jan/2017:03:00:00] "TEST /TEST3.test HTTP/1.1" 200 0 "http://test3.com" '
+log4 = '444.4.4.4 [01/Jan/2017:02:00:00] "TEST /TEST3.test HTTP/1.1" 200 0 "http://test2.com" '
+log5 = '555.5.5.5 [03/Jan/2017:02:00:00] "TEST /TEST1.test HTTP/1.1" 200 0 "http://test1.com" '
 
 
 class FakeLogReader:
     def read_log(self, filename):
         return [LogItem(log1), LogItem(log2), LogItem(log3)]
+
+
+class FakeLogReader2:
+    def read_log(self, filename):
+        return [LogItem(log1), LogItem(log2), LogItem(log3), LogItem(log4), LogItem(log5)]
 
 
 class LogSearchTests(unittest.TestCase):
@@ -229,6 +236,61 @@ class LogSearchTests(unittest.TestCase):
             .inclusive()\
             .ip("")\
             .referrer("")
+
+    def test_ip_or_ip(self):
+        search = LogSearch("", FakeLogReader())
+        expected = {log1, log2}
+
+        actual = search.inclusive()\
+            .ip("111.1.1.1")\
+            .ip("222.2.2.2")\
+            .execute()
+
+        self.assertEqual(expected, set(actual))
+
+    def test_ip_or_ip(self):
+        search = LogSearch("", FakeLogReader())
+        expected = {log1, log2}
+
+        actual = search.inclusive()\
+            .ip("111.1.1.1")\
+            .ip("222.2.2.2")\
+            .execute()
+
+        self.assertEqual(expected, set(actual))
+
+    def test_ip_and_ip(self):
+        search = LogSearch("", FakeLogReader())
+        expected = []
+
+        actual = search.exclusive()\
+            .ip("111.1.1.1")\
+            .ip("222.2.2.2")\
+            .execute()
+
+        self.assertEqual(expected, actual)
+
+    def test_date_or_time(self):
+        search = LogSearch("", FakeLogReader2())
+        expected = {log1, log2, log4, log5}
+
+        actual = search.inclusive()\
+            .date("01/Jan/2017")\
+            .time("02:00:00")\
+            .execute()
+
+        self.assertEqual(expected, set(actual))
+
+    def test_file_and_referrer(self):
+        search = LogSearch("", FakeLogReader2())
+        expected = {log4}
+
+        actual = search.exclusive()\
+            .file("TEST3.test")\
+            .referrer("http://test2.com")\
+            .execute()
+
+        self.assertEqual(expected, set(actual))
 
 
 if __name__ == '__main__':

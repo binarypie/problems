@@ -60,22 +60,30 @@ class LogSearch:
         self._results = set()
 
     def execute(self):
-        return list(self._results)
+        return [self._log_items[i].entry() for i in self._results]
 
     def inclusive(self):
-        self._strategy = "excl"
+        self._strategy = "incl"
         return self
 
     def exclusive(self):
-        self._strategy = "incl"
+        self._strategy = "excl"
         return self
 
     def _step_query(self, query, filter_func):
         if self._results and not self._strategy:
             raise SyntaxError("Two queries were performed without setting the strategy")
 
-        matches = set([log.entry() for log in self._log_items if (filter_func(query, log))])
-        self._results = matches
+        matches = set([index for index, log in enumerate(self._log_items) if (filter_func(query, log))])
+        prior_results = self._results
+
+        if prior_results:
+            if self._strategy == "incl":
+                self._results = prior_results.union(matches)
+            else:
+                self._results = prior_results.intersection(matches)
+        else:
+            self._results = matches
 
     def ip(self, query):
         filter_func = lambda qry, log: qry in log.ip()

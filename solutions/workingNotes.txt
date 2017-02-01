@@ -77,6 +77,8 @@ Use only the entry when you're building up the result set. You don't need anythi
 
 I see that the search parameter methods are turning out to be completely identical except for how they determine a match when querying the original set. Because I'll be adding complex logic to each of these, I ought to pull the meat of these functions in to a private method that accepts a lambda expression to perform the matching.
 
+OH! There's a delicious optimization I can do here. Rather than hold on to the current state of the results via their actual string representations, I can use sets of their integer index in the list of log entries. That should make all those set computations massively less costly. Also, because I have so many unit tests in place, upending the internal implementation like this is must less risky; as long as my tests still pass, I know everything is alright.
+
 
 General:
 
