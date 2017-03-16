@@ -2,17 +2,34 @@ import sys
 import random
 
 
-# line needs to be 83 characters, end with \n
-# sentence needs to be diff lengths
-#paragraphs begin with \t
-# need to ignore words with len of 1 \t \n and " " after we strip them
+'''
+Source: git@github.com:newbootz/problems.git
+Website: https://github.com/newbootz/problems
+Author: Jesus Galvan (@newbootz)
+
+# Essay Monkey #
+
+Given a set of txt files generate an essay.
+
+* The function should take the number of paragraphs to generate.
+* The function should take the number of sentences per peragraph to generate.
+* Each sentence should be of any reasonable length but each should not be the same length.
+
+## Input ##
+python essay_monkey <number_of_paragraphs> <number_of_sentences_per_paragraph>
+
+# Example Input #
+python essay_monkey.py 5 12
+
+'''
 
 
-# Open and load verb, noun, and adjective files
+# Load verb, noun, and adjective files
 a_file = "EssayMonkeyAdjectives.txt"
 n_file = "EssayMonkeyNouns.txt"
 v_file = "EssayMonkeyVerbs.txt"
 
+# Open the word banks and generate iterable/indexable lists (verbs, adjectives, nouns) and return them
 def provide_word_banks():
 	verbs = []
 	adjectives = []
@@ -31,11 +48,14 @@ def provide_word_banks():
 
 	return verbs, adjectives, nouns
 
+
+# Generate a sentence given verbs, adj, and noun lists
+# Sentence structure: ARTICLE {a, the} ADJECTIVE NOUN VERB ARTICLE ADJECTIVE NOUN.
 def generate_sentence(verbs, adjectives, nouns):
 	articles = ["a", "the"]
 	upper_articles = ["A", "The"]
 	sentence = []
-	# Sentence structure: ARTICLE {a, the} ADJECTIVE NOUN VERB ARTICLE ADJECTIVE NOUN.
+	
 	sentence.append(upper_articles[random.randint(0, 1)])
 	sentence.append(nouns[random.randint(0, len(nouns)-1)])
 	sentence.append(verbs[random.randint(0,len(verbs)-1)])
@@ -45,7 +65,7 @@ def generate_sentence(verbs, adjectives, nouns):
 
 	return sentence
 
-
+# Write an essay with given number of paragraphs and sentences per paragraph
 def write_essay(number_of_p, sentences_per_p):
 	essay = []
 	verbs, adjectives, nouns = provide_word_banks()

@@ -1,5 +1,24 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+
+'''
+Source: git@github.com:newbootz/problems.git
+Website: https://github.com/newbootz/problems
+Author: Jesus Galvan (@newbootz)
+
+
+# Common Strings #
+
+Given two strings, write a program that efficiently finds the longest common subsequence.
+
+## Example Input ##
+
+    "Everything is awesome!"
+    "Hello World is awesome!"
+
+## Output ##
+
+    is awesome!
+'''
 
 import sys
 
