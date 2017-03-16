@@ -19,7 +19,7 @@ Once you have that, clone this repository to your machine with ```git clone http
 ### Common substrings
 
 This tool will find the longest commmon substring between two strings (provided as arguments).
-Please see the [Common Substrings Readme](../CommonSubstrings.md) for more information.
+Please see the [Common Substrings Readme](https://github.com/newbootz/problems/blob/master/CommonSubstrings.md) for more information.
 ```
 python common_string.py "Everything is awesome" "Hello World is awesome"
 is awesome
