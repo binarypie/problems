@@ -19,7 +19,8 @@ Once you have that, clone this repository to your machine with ```git clone http
 ### Common substrings
 
 This tool will find the longest commmon substring between two strings (provided as arguments).
-Please see the [Common Substrings Readme](https://github.com/newbootz/problems/blob/master/CommonSubstrings.md) for more information.
+
+Please see the [Common Substrings Readme](https://github.com/newbootz/problems/blob/master/CommonStrings.md) for more information.
 ```
 python common_string.py "Everything is awesome" "Hello World is awesome"
 is awesome
@@ -28,6 +29,7 @@ is awesome
 ### Common susbsequence
 
 This tool will process a list (provided as an argument) of string pairs and find the longest non-contigous subsequence between each pair in the file.
+
 Please see the [Common Subsequence Readme](https://github.com/newbootz/problems/blob/master/CommonSubsequence.md) for more information.
 
 ```
@@ -38,6 +40,7 @@ MJAU
 ### Essay Monkey
 
 This program will generate an essay provided word banks and number of paragraphs and number of sentences per paragraph arguments.
+
 Please see the [Essay Monkey Readme](https://github.com/newbootz/problems/blob/master/EssayMonkey.md) for more information.
 ```
 python essay_monkey.py 5 12
@@ -56,6 +59,7 @@ python essay_monkey.py 5 12
 ### Pig Latin
 
 This program will translate your sentences (provided as an argument) into Pig Latin.
+
 Please see the [Pig Latin Readme](https://github.com/newbootz/problems/blob/master/PigLatin.md) for more information.
 
 ```
@@ -66,6 +70,7 @@ ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestsfay. Hetay
 ### Logs
 
 This tool parses `logs.txt`, creates a cache, and allows inclusive and exclusive log search functionality by operating system, browser, ip address, date, time, file requested, and referrer.
+
 Please see the [Logs Readme](https://github.com/newbootz/problems/blob/master/Logs.md) for more information.
 
 ```
