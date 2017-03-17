@@ -85,8 +85,12 @@ def search_referrer(r_key):
 	return get_hashvalue("referrer",r_key)
 
 def print_results(results):
-	for r in results:
-		print r
+	# Hardcoded filename for ease of use (could have this information as part of the cache when its created)
+
+	fp = open("logs.txt")
+	for i, line in enumerate(fp):
+		if i in results:
+			print line
 def version():
 	print "logs Version 0.0.1"
 
@@ -169,6 +173,7 @@ def get_cache():
 		with open('logs-cache.json') as lc:
 			logs_cache= json.load(lc)
 	except Exception, e:
+		# Again, assuming the file is logs.txt for simpler solution and ease of use... would normally variabilize these values
 		logs_cache = load_logs("logs.txt")
 	return logs_cache
 
