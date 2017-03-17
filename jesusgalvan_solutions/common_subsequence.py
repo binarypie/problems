@@ -22,6 +22,7 @@ MJAU
 
 import sys
 
+# Return longest common subsequence given two substrings
 def find_lcs(string_1, string_2):
 
 	# Generate 2-d cache of size len(string_2)+1 x len(string_1)+1
@@ -37,9 +38,11 @@ def find_lcs(string_1, string_2):
 			else:
 				cache[i+1][j+1] = max(cache[i+1][j], cache[i][j+1])
 	lcs = []
-	# At this point we should have a matrix filled out with lengths of the lcs 
-	# The lcs length will be at index len(string_1), len(string_2) in the matrix
-	# We will traceback from there and build the lcs
+	'''
+	At this point we should have a matrix filled out with lcs lengths.
+	The longest length will be on the bottom right cell.
+	We will traceback from there and build our lcs.
+	'''
 	x, y = len(string_1), len(string_2)
 	while (x > 0 and y > 0):
 		if(cache[x][y] == cache[x-1][y]):
@@ -52,26 +55,24 @@ def find_lcs(string_1, string_2):
 			y-=1
 	return ''.join(lcs)
 
+# Parse the lines of this file
 def longest_common_subsequence(filename):
-	# Parse the lines of this file
-	#try block...also strip lines of whitespaceS..check if delimrter
     with open(filename, 'r') as f:
         lines = f.read().splitlines()
 
-    pairs = []
     # Delimeter is semicolon for the two strings, they can't be larger than 50 length
+    pairs = []
     for line in lines:
         if line:
             line_split = line.split(';')
             if len(line_split[0]) <= 50 and len(line_split[1]) <= 50:
                 pairs.append(line_split)
 
-    return_list = []
     # Find the lcs for each of the pairs
+    return_list = []
     for pair in pairs:
         longest_subsequence = find_lcs(pair[0], pair[1])
         return_list.append(longest_subsequence)
-
     return return_list
 
 def main(filename):

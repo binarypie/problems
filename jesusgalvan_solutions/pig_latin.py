@@ -29,8 +29,8 @@ Write some code that translates a string (word, sentence, or paragraph) into “
 
 import sys
 
+# Break given sentence with space as a delimeter, generate a list, and translate each word
 def pig_latin(s_to_translate):
-	# Break up this sentence with space as a delimeter, generate a list, and translate each word
 	words = s_to_translate.split(" ")
 	pig_latin_words = []
 	for w in words:
@@ -43,10 +43,9 @@ def pig_latin(s_to_translate):
 		pig_latin_words.append(" ")
 	return ''.join(pig_latin_words)
 
-
+# Given a word, determine which kind(consonant,vowel,way) of word this is and translate it
 def translate(w):
 	pl_word = ""
-	# Determine which kind of word this is and translate it
 	if len(w) == 0:
 		return ""
 	if len(w) == 1:
@@ -59,8 +58,8 @@ def translate(w):
 		return translate_consonant(w)
 	return w
 
+# Check if the given word ends in way (ignores punctuation)
 def contains_way(w):
-	#check if the word ends in way, need to ignore punctuation
 	index  = (w.lower()).find("way")
 	if index != -1:
 		if(w == "way"):
@@ -71,6 +70,7 @@ def contains_way(w):
 			return True
 	return False
 
+# Given a word, translate it using rules for words that begin with a vowel
 def translate_vowel(w):
 	punctuation = {}
 	w_wo_punctuation = []
@@ -92,7 +92,7 @@ def translate_vowel(w):
 	return ''.join(result)
 
 
-
+# Given a word, translate it using rules for words that begin with a consonant
 def translate_consonant(w):
 	punctuation = {}
 	capitalized = []

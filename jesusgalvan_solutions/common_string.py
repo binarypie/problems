@@ -22,10 +22,10 @@ Given two strings, write a program that efficiently finds the longest common sub
 
 import sys
 
-
+# Given 2 strings, find the longest common substring
 def longest_common_substring(string_1, string_2):
 
-    # Strings are the same
+    # Strings are the same, everything in common
     if string_1 == string_2:
         return string_1
 
@@ -35,20 +35,20 @@ def longest_common_substring(string_1, string_2):
     if len(string_1) == 0 or len(string_2) == 0:
         return lcs
 
-    # 2-d array cache of size len(string_2)xlen(string_1)
     cache = [[0] * len(string_2) for i in range(len(string_1))]
 
     # Iterate through the strings and fill in the matrix with lcs length
     for i in range(len(string_1)):
         for j in range(len(string_2)):
-            # These characters match at these repsective strings and indicies, increment the lcs counter
+            # These characters match for these strings and respective indecies, increment the lcs counter
             if string_1[i] == string_2[j]:
-                # Case where we are in the edges of matrix and is no previous lcs counter
+                # Check if we are in the edges of matrix and is no previous lcs counter
+                # Else we are not on the edges of matrix and there exists previous lcs counter to increment from
                 if i == 0 or j == 0:
                     cache[i][j] = 1
-                # Case where we are not on the edges of matrix and there exists previous lcs counter to increment from
                 else:
                     cache[i][j] = cache[i - 1][j - 1] + 1
+                
                 # If we have a new lcs, save it
                 if cache[i][j] > len(lcs):
                     lcs = string_1[i - cache[i][j] + 1:i + 1]
