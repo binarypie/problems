@@ -22,7 +22,7 @@ import re
 import json
 
 
-# define the function blocks
+# Provides description of the utility and usage information
 def help():
 	help_message = '''
 	NAME
@@ -48,7 +48,7 @@ def help():
 	    --browser=arg   - Search by browser (example: --browser="Internet Explorer")
 	    --ip=arg        - Search by IP address (example: --ip="127.0.0.1")
 	    --date=arg      - Search by date (example: --date="19/Jun/2012")
-	    --time=arg      - Search by time (example: --time=""09:16:22"")
+	    --time=arg      - Search by time (example: --time="09:16:22")
 	    --file=arg      - Search by file (example: --file="0xb.jpg")
 	    --referrer=arg  - Search by referrer (example: --referrer="http://domain.com/azb")
 	    --version       - Display the program version
@@ -57,10 +57,12 @@ def help():
 	COMMANDS
 	    inclusive  - Search the logs with search filters inclusively
 	    exclusive  - Search the logs with search filters exclusively
+	    load       - Parses provided log files and creates logs-cache.json
 
 	'''
 	print help_message
 
+# Define options for searching logs
 def search_os(os_key):
 	return get_hashvalue("os",os_key)
 
@@ -82,23 +84,13 @@ def search_file(f_key):
 def search_referrer(r_key):
 	return get_hashvalue("referrer",r_key)
 
-def inclusive(results):
-	inc_set = set(results)
-	for item in inc_set:
-		print item
+def print_results(results):
+	for r in results:
+		print r
+def version():
+	print "logs Version 0.0.1"
 
-def exclusive(results):
-	half = len(results)/2
-	front = results[:half]
-	end = results[half:]
-	exc_set = set()
-	for l in front:
-		if l in end:
-			exc_set.add(l)
-	for item in exc_set:
-		print item
-
-
+# Takes in a log file, parses, and creates a cache
 def load_logs(logfile):
 	print "Loading file: %s" %(logfile)
 	ip_hash = {}
@@ -109,6 +101,7 @@ def load_logs(logfile):
 	os_hash = {}
 	browser_hash = {}
 
+	# Search items and regular expression for parsing out the log
 	os_list = ["Windows","Android","Linux","NOKIAN78","Nokia","iPhone OS","iPad; CPU OS","iOS"]
 	browser_list = ["SV1","Internet Explorer","Firefox","Chrome","Safari","Opera","AppleWebKit","UCWEB"]
 
@@ -120,7 +113,7 @@ def load_logs(logfile):
 			regex = re.compile(pattern)
 			match = regex.match(line)
 			if(match):
-				# Parse this line out and put it in our maps
+				# Parse this line out and put it in our hash maps for each matching category
 				ip = match.group("ip")
 				f = match.group("file")
 				date = match.group("date")
@@ -132,19 +125,21 @@ def load_logs(logfile):
 				for b in browser_list:
 					if b in line:
 						add_item(b,index,browser_hash)
-
 				add_item(ip,index,ip_hash)
 				add_item(f,index,file_hash)
 				add_item(date,index,date_hash)
 				add_item(time,index,time_hash)
 				add_item(r,index,referrer_hash)
 	lf.close()
+
+	# Create the cache
 	cache =  {"file": file_hash, "ip": ip_hash, "date": date_hash,\
 				"time": time_hash, "referrer": referrer_hash, "os": os_hash, "browser": browser_hash}
 	create_cache(cache)
 	print "Finished loading file information to cache: %s" %("logs-cache.json")
 	return cache
 
+# Returns hash value give a search category and a search key
 def get_hashvalue(category, key):
 	logs_cache = get_cache()
 	hash_map = logs_cache[category]
@@ -155,16 +150,19 @@ def get_hashvalue(category, key):
 		pass
 	return r
 
+# Adds item to a map of string : list
 def add_item(key, line, hash_map):
 	if(key in hash_map):
 		hash_map[key].append(line)
 	else:
 		hash_map[key] = [line]
 
+# Writes a hash map into .json file
 def create_cache(hash_map):
 	with open("logs-cache.json","w") as j:
 		j.write(json.dumps(hash_map, indent=4, sort_keys=True))
 
+# If a cache does not already exist, create one. Assumes txt file is name logs.txt
 def get_cache():
 	logs_cache = {}
 	try:
@@ -184,31 +182,49 @@ def main():
 	           "--time" : search_time,
 	           "--file" : search_file,
 	           "--referrer" : search_referrer,
+	           "--version" : version,
 	}
-	commands = {"inclusive": inclusive,
-				"exclusive": exclusive,
-	}
+	commands = ["inclusive", "exclusive", "load"]
+	# Need at least 3 arguments for exclusive/inclusive search or load command
 	if(len(sys.argv) > 2):
-		inc_exc = sys.argv[1]
-		if inc_exc in commands:
-			# try:
-			results = []
-			for i, a in enumerate(sys.argv):
-				if i > 1:
-					opt_arg = a.split("=")
-					filter_results = options[opt_arg[0]](opt_arg[1])
-					results.extend(filter_results)
-			commands[inc_exc](results)
-			# except Exception, e:
-			# 	print e
-			# 	print "\nINCORRECT USAGE:\n"
-			# 	options["--help"]()
+		type_cmd = sys.argv[1]
+		# Determine if this is a load or search command and execute it
+		if type_cmd in commands:
+			try:
+				if(type_cmd == "load"):
+					load_logs(sys.argv[2])
+				else:
+					results = set()
+					for i, a in enumerate(sys.argv):
+						if i > 1:
+							opt_arg = a.split("=")
+							filter_results = options[opt_arg[0]](opt_arg[1])
+							if(type_cmd == "inclusive"):
+								results = results | set(filter_results)
+							else:
+								if results:
+									results = results & set(filter_results)
+								else:
+									results = set(filter_results)
+
+					print_results(results)
+
+
+			except Exception, e:
+				print "\nINCORRECT USAGE: %s\n" %(e)
+				options["--help"]()
+		# Command not part recognized
 		else:
 			print "\nUSAGE: \n"
-			options["--help"]()		
+			options["--help"]()
+
+	# Only one argument, it's either version or help, determine which and execute
 	else:
-		print "\nUSAGE: \n"
-		options["--help"]()
+		if(sys.argv[1] == "--version"):
+			version()
+		else:
+			print "\nUSAGE: \n"
+			options["--help"]()
 
 
 
