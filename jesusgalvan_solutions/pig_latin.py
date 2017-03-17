@@ -8,15 +8,15 @@ Author: Jesus Galvan (@newbootz)
 
 # Pig Latin #
 
-Write some code that translates a string (word, sentence, or paragraph) into “pig-latin” using the following rules.
+Write some code that translates a string (word, sentence, or paragraph) into 'pig-latin' using the following rules.
 
-* Words that start with a consonant have their first letter moved to the end of the word and the letters “ay” added to the end.
-* Words that start with a vowel have the letters “way” added to the end.
-* Words that end in “way” are not modified.
-* Punctuation must remain in the same relative place from the end of the word.
-* Hyphens are treated as two words
-* Capitalization must remain in the same place.
-* Single letters are not modified.
+  Words that start with a consonant have their first letter moved to the end of the word and the letters 'ay' added to the end.
+  Words that start with a vowel have the letters way added to the end.
+  Words that end in 'way' are not modified.
+  Punctuation must remain in the same relative place from the end of the word.
+  Hyphens are treated as two words
+  Capitalization must remain in the same place.
+  Single letters are not modified.
 
 ## Example Input ##
 
@@ -41,7 +41,7 @@ def pig_latin(s_to_translate):
 			pig_latin_s = translate(w)
 		pig_latin_words.append(pig_latin_s)
 		pig_latin_words.append(" ")
-	return ''.join(pig_latin_words)
+	return ''.join(pig_latin_words).strip()
 
 # Given a word, determine which kind(consonant,vowel,way) of word this is and translate it
 def translate(w):
