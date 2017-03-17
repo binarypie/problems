@@ -13,8 +13,6 @@ Once you have that, clone this repository to your machine with ```git clone http
 
 ## Usage
 
-![Cool gif](images/clone_repo.gif)
-
 
 ### Common substrings
 
@@ -40,6 +38,18 @@ python common_subsequence.py common_subsequence_SAMPLE.txt
 MJAU
 ```
 
+### Pig Latin
+
+This program will translate your sentences (provided as an argument) into Pig Latin.
+
+Please see the [Pig Latin Readme](https://github.com/newbootz/problems/blob/master/PigLatin.md) for more information.
+
+```
+python pig_latin.py "HeLLo World! I can't wait to explore your VAST forests. The-End!"
+ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestsfay. Hetay-Endway!
+```
+
+
 ### Essay Monkey
 
 This program will generate an essay provided word banks and number of paragraphs and number of sentences per paragraph arguments.
@@ -59,17 +69,6 @@ python essay_monkey.py 5 12
 
 ```
 
-### Pig Latin
-
-This program will translate your sentences (provided as an argument) into Pig Latin.
-
-Please see the [Pig Latin Readme](https://github.com/newbootz/problems/blob/master/PigLatin.md) for more information.
-
-```
-python pig_latin.py "HeLLo World! I can't wait to explore your VAST forests. The-End!"
-ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestsfay. Hetay-Endway!
-```
-
 ### Logs
 
 This tool parses `logs.txt`, creates a cache, and allows inclusive and exclusive log search functionality by operating system, browser, ip address, date, time, file requested, and referrer.
@@ -77,4 +76,45 @@ This tool parses `logs.txt`, creates a cache, and allows inclusive and exclusive
 Please see the [Logs Readme](https://github.com/newbootz/problems/blob/master/Logs.md) for more information.
 
 ```
+python logs.py --help
+
+USAGE:
+
+
+        NAME
+            logs - Parse "logs.txt" file and allows the user to search inclusively and exclusively by the following:
+
+                OS
+                Browser
+                IP
+                Date
+                Time
+                File Requested
+                Referrer
+
+
+        SYNOPSIS
+            logs.py [command]  [global options] [arguments]
+
+        VERSION
+            0.0.1
+
+        GLOBAL OPTIONS
+            --os=arg        - Search by operating system (example: --os="Windows")
+            --browser=arg   - Search by browser (example: --browser="Internet Explorer")
+            --ip=arg        - Search by IP address (example: --ip="127.0.0.1")
+            --date=arg      - Search by date (example: --date="19/Jun/2012")
+            --time=arg      - Search by time (example: --time="09:16:22")
+            --file=arg      - Search by file (example: --file="0xb.jpg")
+            --referrer=arg  - Search by referrer (example: --referrer="http://domain.com/azb")
+            --version       - Display the program version
+            --help          - Show this message
+
+        COMMANDS
+            inclusive  - Search the logs with search filters inclusively
+            exclusive  - Search the logs with search filters exclusively
+            load       - Parses provided log files and creates logs-cache.json
+
 ```
+
+![Cool gif](images/demo.gif)
