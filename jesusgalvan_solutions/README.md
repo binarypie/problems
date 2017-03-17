@@ -33,6 +33,9 @@ This tool will process a list (provided as an argument) of string pairs and find
 Please see the [Common Subsequence Readme](https://github.com/newbootz/problems/blob/master/CommonSubsequence.md) for more information.
 
 ```
+cat common_subsequence_SAMPLE.txt
+XMJYAUZ;MZJAWXU
+
 python common_subsequence.py common_subsequence_SAMPLE.txt
 MJAU
 ```
