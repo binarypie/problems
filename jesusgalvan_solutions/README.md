@@ -1,4 +1,4 @@
-# Jesus Galvan Solutions
+# Jesus Galvan's Solutions
 
 This is a collection of solutions for the logs, common substring, common subsequence, essay monkey, and pig latin problems.
 
