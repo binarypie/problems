@@ -71,6 +71,8 @@ python essay_monkey.py 5 12
 
 ### Logs
 
+![Cool gif](images/demo.gif)
+
 This tool parses `logs.txt`, creates a cache, and allows inclusive and exclusive log search functionality by operating system, browser, ip address, date, time, file requested, and referrer.
 
 Please see the [Logs Readme](https://github.com/newbootz/problems/blob/master/Logs.md) for more information.
@@ -117,4 +119,3 @@ USAGE:
 
 ```
 
-![Cool gif](images/demo.gif)
