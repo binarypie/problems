@@ -225,12 +225,10 @@ def main():
 
 	# Only one argument, it's either version or help, determine which and execute
 	else:
-		if(sys.argv[1] == "--version"):
+		if(len(sys.argv) > 1 and sys.argv[1] == "--version"):
 			version()
 		else:
 			print "\nUSAGE: \n"
 			options["--help"]()
-
-
 
 main()
