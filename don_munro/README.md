@@ -36,3 +36,9 @@ cd $YOUR_WORK_DIR\problems\don-munro
 python fibonacci.py 8
 0, 1, 1, 2, 3, 5, 8, 13
 ```
+
+Limitations:
+ - As it stands there is no limit on the size of a sequence that can be requested.
+   While Python seems to handle precision of large values, there is an issue with
+   max recurrsion depth being reached.  This is left as a know vulnerability at this
+   time.
