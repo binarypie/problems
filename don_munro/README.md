@@ -17,7 +17,7 @@ LCS for abcdef and acbef : abef
 ### Common Substring
 
 ```
-cd $YOUR_WORK_DIR\problems\don-munro
+cd $YOUR_WORK_DIR/problems/don-munro
 python common_substring.py 'Everything is awesome!' 'Hello World is awesome!'
  is awesome!
 ```
@@ -32,7 +32,7 @@ Note that the match includes the whitespace - ' awe'
 
 ### Fibonacci Sequence
 ```
-cd $YOUR_WORK_DIR\problems\don-munro
+cd $YOUR_WORK_DIR/problems/don-munro
 python fibonacci.py 8
 0, 1, 1, 2, 3, 5, 8, 13
 ```
