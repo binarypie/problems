@@ -32,15 +32,14 @@ def find_lcs(str1, str2):
     seq = []
 
     # With the subsequence tracking table in hand we now backtrack
-    # to identify that characters that actually make up the LCS.
+    # to identify the characters that actually make up the LCS.
     while (row >= 0 and col >= 0):
-
         if subseq_tbl[row][col] == subseq_tbl[row-1][col]:
             row -=1
         elif subseq_tbl[row][col] == subseq_tbl[row][col-1]:
             col -= 1
         else:
-            # Back tracking puts us on the diagonal - update the LCS and move
+            # Backtracking has us on the diagonal - update the LCS
             seq.insert(0, str1[row-1])
             row -= 1
             col -= 1
@@ -66,14 +65,11 @@ def main(argv):
         filename = raw_input("Filename: ")
 
     with open(filename, 'r') as inputfile:
-        # for line in inputfile:
-        for line_num, line in enumerate(inputfile.readlines()):
+        for line in inputfile:
             strs = line.strip().split(';')
             if is_valid_line(strs):
                 lcs = find_lcs(strs[0], strs[1])
                 print ("LCS for %s and %s : %s" % (strs[0], strs[1], lcs))
-            else:
-                print ("Ignoring entry at line no %d" % (line_num))
 
 
 if __name__ == "__main__":
