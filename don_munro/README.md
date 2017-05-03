@@ -42,3 +42,11 @@ Limitations:
    While Python seems to handle precision of large values, there is an issue with
    max recurrsion depth being reached.  This is left as a know vulnerability at this
    time.
+
+### Essay Monkey
+
+The essay Monkey should be considered a work in progress at this time with apologies
+(but no excuse) as time lines and previous commitments make it look like this may
+not be completed before the interview tomorrow AM.  There are 3 other solutions here
+but I though I'd try this one as well given the substring and subsequence problems are
+similar.  
