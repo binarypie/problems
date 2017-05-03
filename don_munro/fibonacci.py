@@ -43,7 +43,9 @@ class FibonacciGenerator():
             return fib_num
 
         gen_fib_helper(length - 1)
-        print(self.sequence)
+
+        return str(self.sequence).strip('[]')
+        
 
 
 def main(argv):
@@ -54,8 +56,8 @@ def main(argv):
         seq_length = raw_input("Sequence length: ")
 
     generator = FibonacciGenerator()
-    generator.generate_sequence(int(seq_length))
-    print(generator.sequence)
+    sequence = generator.generate_sequence(int(seq_length))
+    print(sequence)
 
 if __name__ == "__main__":
     main(sys.argv)
