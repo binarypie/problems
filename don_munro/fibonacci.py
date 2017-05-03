@@ -24,7 +24,7 @@ Ref: https://github.com/binarypie/problems/blob/master/Fibonacci.md
 """
 
 
-class FibonacciGenerator():
+class FibonacciGenerator(object):
 
     def __init__(self):
         # Track a generated sequence at the class level.  We'll extend this
