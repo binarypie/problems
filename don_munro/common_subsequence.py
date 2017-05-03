@@ -2,12 +2,13 @@ import sys
 
 MAX_STR_LEN = 50
 
+
 def _get_subsequence_table(str1, str2):
     # Define a 2d 'array' to assist with the DP solution.  We pad the 'array'
     # with an extra row/col to help clean up the logic used to calculate the
     # LCS and accept the extra space used as an accepted tradeoff
     #
-    # Credit: Algorithm based on solution provided by Tushar Roy at
+    # Credit: Algorithm based on presentation provided by Tushar Roy at
     #         https://www.youtube.com/watch?v=NnD96abizww
     rows = len(str1) + 1
     cols = len(str2) + 1
@@ -45,7 +46,6 @@ def find_lcs(str1, str2):
             col -= 1
 
     return "".join(seq)
-
 
 
 def is_valid_line(str_list):

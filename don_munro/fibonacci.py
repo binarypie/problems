@@ -22,6 +22,8 @@ solution to form the sequence.
 Ref: https://github.com/binarypie/problems/blob/master/Fibonacci.md
 
 """
+
+
 class FibonacciGenerator():
 
     def __init__(self):
@@ -45,7 +47,6 @@ class FibonacciGenerator():
         gen_fib_helper(length - 1)
 
         return str(self.sequence).strip('[]')
-        
 
 
 def main(argv):
@@ -61,6 +62,3 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv)
-
-
-
