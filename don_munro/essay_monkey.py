@@ -75,7 +75,7 @@ def main(argv):
         num_sentences = raw_input("Sentences: ")
 
     monkey = EssayMonkey()
-    essay = monkey.generate_essay(num_paragraphs, num_sentences)
+    essay = monkey.generate_essay(int(num_paragraphs), int(num_sentences))
     print essay
 
 
