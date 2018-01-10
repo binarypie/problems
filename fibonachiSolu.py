@@ -1,8 +1,14 @@
 def main():
-    place=int(raw_input("Enter place"))
-    print (0)
-    print(1)
-    printSequence(place-2, 0, 1)
+    place=int(raw_input("Enter place "))
+    if place==1:
+        print 0
+        return
+    elif place>=2:    
+        print (0)
+        print(1)
+        if place>2:
+            printSequence(place-2, 0, 1)
+        
 
 def printSequence(i, prev, cur):
     if i==0:
