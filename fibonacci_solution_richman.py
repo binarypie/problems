@@ -1,4 +1,10 @@
-maxval = int(raw_input())
+import sys
+
+try:
+    maxval = int(sys.argv[1])
+except IndexError:
+    maxval = int(raw_input())
+
 ans = []
 
 # Recursively add fibonacci numbers up to maxval
