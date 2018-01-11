@@ -3,6 +3,17 @@ def main():
     sentence = sentence.split()
     vowels=['a', 'e', 'i', 'o', 'u']
     renewed=[]
+    
+    lfh=[]
+    for i in sentence: #just a little something to deal with hyphens
+        if "-" in i:
+            j=(i.split("-"))
+            lfh.append(j[0]+str("-"))
+            lfh.append(str(j[1]))
+        else:
+            lfh.append(i)        
+    sentence=lfh    
+ 
     for i in sentence:
         if len(i)==1:
             renewed.append(i)
@@ -10,18 +21,31 @@ def main():
         if (len(i)>=3 and i[-3:]=="way"):
             renewed.append(i)
             continue
-        if ((i[0] not in vowels)):
+        if ((i[0]).lower() not in vowels):
             s=(str(i[1:])+str(i[0])+"ay")
-            renewed.append(punctuate(i,s))
+            renewed.append(sCapitalize(punctuate(i, s)))
             continue
-        if i[0] in vowels:
+        if ((i[0]).lower() in vowels):
             s=(str(i)+"way")
-            renewed.append(punctuate(i,s))
+            renewed.append(sCapitalize(punctuate(i, s)))
             continue
-    return(" ".join(renewed))
+     
+    return(" ".join(renewed).replace("- ", "-"))
 
-def punctuate(i, s):
-    punctuation=[',', '.', '?', '!', '\'', ]
+
+def sCapitalize((i, s)):#capitalize correctly
+    newS=[]
+    for k in range(len(i)):
+        if (i[k]).isupper():
+            newS.append(s[k].upper())
+        else:
+            newS.append(s[k].lower())
+    modstr="".join(newS)
+    modstr=modstr+str(s[-(len(s)-len(modstr)):])
+    return modstr
+
+def punctuate(i, s):#check for punctuations
+    punctuation=[',', '.', '?', '!', '\'', '-' ]
     actualPunc=""
     npi=0
     se=""
@@ -33,12 +57,12 @@ def punctuate(i, s):
             break
     npi=npi-len(i)
     if abs(npi)==len(i):
-        return s
+        return (i, s)
     else:
         if len(se[0:npi+len(se)+1]) == len(se):
-            return (se[0:npi+len(se)+1] + actualPunc)
+            return (i, se[0:npi+len(se)+1] + actualPunc)
         else:
-            return(se[0:npi+len(se)+1] + actualPunc +se[-1])
+            return(i, se[0:npi+len(se)+1] + actualPunc +se[-1])
 
 
 if __name__ == "__main__":
