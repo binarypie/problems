@@ -8,18 +8,26 @@
 require 'pry'
 
 
-def essayMonkey(num_para, num_sen)
+def essay_monkey(num_para, num_sen)
+  para_generator(num_para, num_sen)
+end
+
+def sentence_generator(num_sen)
   nouns = parse_file('EssayMonkeyNouns.txt')
   verbs = parse_file('EssayMonkeyVerbs.txt')
   adj = parse_file('EssayMonkeyAdjectives.txt')
-  # num_para.times.do |para|
-    num_sen.times do |sen|
-      noun_idx = rand(0..nouns.length)
-      adj_idx = rand(0..adj.length)
-      verbs_idx = rand(0..verbs.length)
-      puts "#{nouns[noun_idx]} #{verbs[verbs_idx]} #{adj[adj_idx]}."
-    end
-  # end
+  num_sen.times do |sen|
+    noun_idx = rand(0..nouns.length)
+    adj_idx = rand(0..adj.length)
+    verbs_idx = rand(0..verbs.length)
+    puts "#{nouns[noun_idx]} #{verbs[verbs_idx]} #{adj[adj_idx]}."
+  end
+end
+
+def para_generator(num_para, num_sen)
+  num_para.times do |para|
+    sentence_generator(num_sen)
+  end
 end
 
 def parse_file(file)
@@ -29,4 +37,4 @@ def parse_file(file)
 end
 
 
-puts essayMonkey(1,5)
+puts essay_monkey(1,5)
