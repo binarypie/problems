@@ -1,65 +1,47 @@
-# Essay Monkey #
-
-# > Given a set of txt files generate an essay.
-# * The function should take the number of paragraphs to generate.
-# * The function should take the number of sentences per peragraph to generate.
-# * Each sentence should be of any reasonable length but each should not be the same length.
+require_relative 'Sentence'
+require_relative 'Parser'
 require 'pry'
 
-def essay_monkey(num_para, num_sen)
-  para_generator(num_para, num_sen)
-end
+class Essay
 
-def sentence_generator(num_sen)
-  nouns = parse_file('EssayMonkeyNouns.txt')
-  verbs = parse_file('EssayMonkeyVerbs.txt')
-  adj = parse_file('EssayMonkeyAdjectives.txt')
-  num_sen.times do |sen|
-    noun_idx = rand(0..nouns.length)
-    adj_idx = rand(0..adj.length)
-    verbs_idx = rand(0..verbs.length)
-    random_nouns = nouns[noun_idx]*rand(0..9)
-    random_verbs = verbs[verbs_idx]*rand(0..9)
-    random_adj = adj[adj_idx]*rand(0..9)
-    binding.pry
-    puts "#{random_nouns} #{random_verbs} #{random_adj}."
-     # "#{verbs[verbs_idx]}"*rand(0..9) "#{adj[adj_idx]}"*rand(0..9)
+  def initialize(num_p, num_s)
+    @num_p = num_p
+    @num_s = num_s
   end
-end
 
-def para_generator(num_para, num_sen)
-  num_para.times do |para|
-    sentence_generator(num_sen)
+  def generate
+    @essay = []
+    @paragraph = []
+    @sentence_lengths = []
+    @num_p.times do |paragraph|
+      @num_s.times do |sentence|
+        @sentence = Sentence.new.generate
+        @length_of_sentence = @sentence.length
+        if (@sentence_lengths).include?(@length_of_sentence)
+          @sentence = Sentence.new.generate
+        else
+          @paragraph << @sentence
+          @sentence_lengths << @length_of_sentence
+        end
+      @essay << @paragraph
+      binding.pry
+      end
+      puts @essay
+    end
   end
+
 end
 
-def parse_file(file)
-  File.open(file).each do |line|
-    return array = line.split(',')
-  end
-end
-
-# Generate a sentence.
-# Now check the length of all sentences before it within the same paragraph.
-  # IF there is a sentence of the same length
-      # call the sentence_generator method again
-  # ELSE
-      # continue onto the next sentence.
-  # end
-#end
-
-puts essay_monkey(1,1)
+essay = Essay.new(5, 6)
+essay.generate
 
 
 
-#Other alternatives
 
-# Given the num_sen (representing number of sentences), create a hash that is num_sen keys long and assign a random value to each key. This random value will represent the length of the sentence. Double check to make sure all values (sentence lengths) are unique. Then generate the sentences. Do this para_num times.
-
-# {
-#   1: 5
-#   2: 4
-#   3: 6
-#   4: 8
-#   5: 3
-# }
+# sentence = Sentence.new
+# sentence.load_words({ noun_file: "EssayMonkeyNouns.txt",
+#                       verb_file: "EssayMonkeyVerbs.txt",
+#                       adj_file: "EssayMonkeyAdjectives.txt"
+#                     })
+# sentence.generate
+# print sentence.generate
