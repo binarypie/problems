@@ -1,6 +1,6 @@
 # Fibonacci Sequence #
 
-> The Fibonacci sequence is constructed by adding the last two numbers of the sequence so far to 
+> The Fibonacci sequence is constructed by adding the last two numbers of the sequence so far to
 get the next number in the sequence. The first and second numbers of the sequence are
 defined as 0 and 1.
 
