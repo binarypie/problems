@@ -3,15 +3,11 @@ require 'pry'
 
   def wordify(sentence)
     return sentence_array = sentence.split(" ")
-    # return sentence_array = sentence.split( /\s+|\b/ )
-    # return sentence_array = sentence.split( /\s+|\!|\-|\.|\,/ )
-    # p sentence_array = sentence.split( /\s+|\b|\W/ )
   end
 
   def change_consonant_starters(word)
     word_array = word.downcase.split("")
     first_letter = word_array.shift
-    # binding.pry
     if /\W/.match(word_array[-1]).class == MatchData
       final_word = word_array.insert(-2, first_letter+"ay").join
     else
@@ -38,8 +34,9 @@ require 'pry'
   #   if word.include("-")
   # end
 
-  def ends_with_punctuation?
-    /\W/.match(word_array[-1]).class == MatchData
+  def has_punctuation?
+    if word.include(/[[:punct:]]/)
+    # /\W/.match(word_array[-1]).class == MatchData
   end
 
   def has_apostrophe?
@@ -51,10 +48,13 @@ require 'pry'
   end
 
 
-
-sentence = "HeLLo World! I can't wait to explore your VAST forests. The-End!"
+def pig_latin(sentence)
+  words = wordify(sentence)
+  final_sentence = []
+  words.each do |word|
+    if word.include? '-'
+      first,second=word.split("-")
 vowel = ['a','e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-final_sentence = []
 wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!").each do |word|
   if vowel.include?(word[0])
     final_sentence << change_vowel_starters(word)
@@ -65,8 +65,16 @@ end
 puts final_sentence
 end
 
+sentence = "HeLLo World! I can't wait to explore your VAST forests. The-End!"
 
 
+puts change_consonant_starters("Hello!")
+puts change_vowel_starters("Apple!")
+puts change_consonant_starters("Can't")
+
+# return sentence_array = sentence.split( /\s+|\b/ )
+# return sentence_array = sentence.split( /\s+|\!|\-|\.|\,/ )
+# p sentence_array = sentence.split( /\s+|\b|\W/ )
 
 # wordified.each do |word|
 #   # binding.pry
@@ -83,7 +91,5 @@ end
 # p wordified = wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!")
 # # p wordified.join("")
 #
-puts change_consonant_starters("Hello!")
-puts change_vowel_starters("Apple!")
-puts change_consonant_starters("Can't")
+
 # puts wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!")
