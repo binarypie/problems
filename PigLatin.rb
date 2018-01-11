@@ -5,6 +5,12 @@ require 'pry'
     return sentence_array = sentence.split(" ")
   end
 
+#Will the word be transformed? And if so, how? 
+
+  def determine_word(word)
+    if word.length == 0 || word.length == 1
+  end
+
   def change_consonant_starters(word)
     word_array = word.downcase.split("")
     first_letter = word_array.shift
@@ -29,10 +35,6 @@ require 'pry'
       final_word = word + "way"
     end
   end
-
-  # def is_hyphenated?(word)
-  #   if word.include("-")
-  # end
 
   def has_punctuation?
     if word.include(/[[:punct:]]/)
