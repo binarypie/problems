@@ -18,7 +18,12 @@ def sentence_generator(num_sen)
     noun_idx = rand(0..nouns.length)
     adj_idx = rand(0..adj.length)
     verbs_idx = rand(0..verbs.length)
-    puts "#{nouns[noun_idx]} #{verbs[verbs_idx]} #{adj[adj_idx]}."
+    random_nouns = nouns[noun_idx]*rand(0..9)
+    random_verbs = verbs[verbs_idx]*rand(0..9)
+    random_adj = adj[adj_idx]*rand(0..9)
+    binding.pry
+    puts "#{random_nouns} #{random_verbs} #{random_adj}."
+     # "#{verbs[verbs_idx]}"*rand(0..9) "#{adj[adj_idx]}"*rand(0..9)
   end
 end
 
@@ -30,7 +35,7 @@ end
 
 def parse_file(file)
   File.open(file).each do |line|
-    return noun_array = line.split(',')
+    return array = line.split(',')
   end
 end
 
@@ -43,7 +48,7 @@ end
   # end
 #end
 
-puts essay_monkey(1,5)
+puts essay_monkey(1,1)
 
 
 
