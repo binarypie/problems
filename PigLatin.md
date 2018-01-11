@@ -17,3 +17,7 @@
 ## Example Output ##
 
     "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
+
+
+    #can't
+    #antca'y
