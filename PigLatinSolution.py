@@ -5,7 +5,7 @@ def main():
     renewed=[]
     
     lfh=[]
-    for i in sentence: #just a little something to deal with hyphens
+    for i in sentence: #just a little something to deal with hyphens :-)
         if "-" in i:
             j=(i.split("-"))
             lfh.append(j[0]+str("-"))
@@ -15,22 +15,22 @@ def main():
     sentence=lfh    
  
     for i in sentence:
-        if len(i)==1:
+        if len(i)==1: #for "I"
             renewed.append(i)
             continue
-        if (len(i)>=3 and i[-3:]=="way"):
+        if (len(i)>=3 and i[-3:]=="way"): #Words that end in "way"
             renewed.append(i)
             continue
-        if ((i[0]).lower() not in vowels):
+        if ((i[0]).lower() not in vowels): #for first letter consonant
             s=(str(i[1:])+str(i[0])+"ay")
             renewed.append(sCapitalize(punctuate(i, s)))
             continue
-        if ((i[0]).lower() in vowels):
+        if ((i[0]).lower() in vowels): #for first letter vowel
             s=(str(i)+"way")
             renewed.append(sCapitalize(punctuate(i, s)))
             continue
      
-    return(" ".join(renewed).replace("- ", "-"))
+    return(" ".join(renewed).replace("- ", "-"))#handling "-"
 
 
 def sCapitalize((i, s)):#capitalize correctly
