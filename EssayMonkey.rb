@@ -4,9 +4,7 @@
 # * The function should take the number of paragraphs to generate.
 # * The function should take the number of sentences per peragraph to generate.
 # * Each sentence should be of any reasonable length but each should not be the same length.
-
 require 'pry'
-
 
 def essay_monkey(num_para, num_sen)
   para_generator(num_para, num_sen)
@@ -36,5 +34,27 @@ def parse_file(file)
   end
 end
 
+# Generate a sentence.
+# Now check the length of all sentences before it within the same paragraph.
+  # IF there is a sentence of the same length
+      # call the sentence_generator method again
+  # ELSE
+      # continue onto the next sentence.
+  # end
+#end
 
 puts essay_monkey(1,5)
+
+
+
+#Other alternatives
+
+# Given the num_sen (representing number of sentences), create a hash that is num_sen keys long and assign a random value to each key. This random value will represent the length of the sentence. Double check to make sure all values (sentence lengths) are unique. Then generate the sentences. Do this para_num times.
+
+# {
+#   1: 5
+#   2: 4
+#   3: 6
+#   4: 8
+#   5: 3
+# }
