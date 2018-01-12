@@ -5,7 +5,7 @@ This program uses recursive to provide the user the first n terms of the fibonac
 Run the following command in your terminal:
 
 ```
-ruby fibonacci(4)
+ruby Fibonacci.rb 4
 
 => 0, 1, 1, 2
 

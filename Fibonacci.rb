@@ -9,8 +9,10 @@ def fibonacci(n)
     fib_array = fibonacci(n-1)
     fib_array << fib_array[-1] + fib_array[-2]
   end
-  return fib_array.join(', ')
+  return fib_array
 end
 
-
-puts fibonacci(3)
+if ARGV[0]
+  n = ARGV[0].to_i
+  puts fibonacci(n).join(', ')
+end
