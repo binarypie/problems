@@ -1,6 +1,5 @@
 require_relative 'Sentence'
 require_relative 'Parser'
-require 'pry'
 
 class Essay
 
