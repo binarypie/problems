@@ -1,15 +1,30 @@
 require 'pry'
 
+# SENTENCE SPLITTER
 
   def wordify(sentence)
     return sentence_array = sentence.split(" ")
   end
 
-#Will the word be transformed? And if so, how? 
+#Will the word be transformed? And if so, how?
 
-  def determine_word(word)
+#WORD DETERMINER
+
+  def determine_and_translate(word)
+    vowels = ['a','e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
     if word.length == 0 || word.length == 1
+      return word
+    elsif ends_with_way?(word)
+      return word
+    elsif vowels.include? word[0]
+      return change_vowel_starters(word)
+    else
+      return change_consonant_starters(word)
+    end
+    return word
   end
+
+  # ACTIONS TO FOLLOW DEPENDING ON TYPE OF WORD
 
   def change_consonant_starters(word)
     word_array = word.downcase.split("")
@@ -36,18 +51,22 @@ require 'pry'
     end
   end
 
+  # HELPER METHODS
+
   def has_punctuation?
-    if word.include(/[[:punct:]]/)
+    true if word.include(/[[:punct:]]/)
     # /\W/.match(word_array[-1]).class == MatchData
   end
 
   def has_apostrophe?
-    if word.include("'")
+    true if word.include("'")
   end
 
-  def end_with_way?(word)
+  def ends_with_way?(word)
     word[-3..-1] == "way"
   end
+
+  # FINAL METHOD
 
 
 def pig_latin(sentence)
@@ -56,42 +75,20 @@ def pig_latin(sentence)
   words.each do |word|
     if word.include? '-'
       first,second=word.split("-")
-vowel = ['a','e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!").each do |word|
-  if vowel.include?(word[0])
-    final_sentence << change_vowel_starters(word)
-  else
-    final_sentence << change_consonant_starters(word)
+      latinified = "#{determine_and_translate(first)}-#{determine_and_translate(second)}"
+    else
+      latinified = determine_and_translate(word)
+    end
+  final_sentence << latinified
   end
+  return final_sentence.join(" ")
 end
-puts final_sentence
-end
+
 
 sentence = "HeLLo World! I can't wait to explore your VAST forests. The-End!"
 
-
+puts determine_and_translate("Hello!")
 puts change_consonant_starters("Hello!")
 puts change_vowel_starters("Apple!")
 puts change_consonant_starters("Can't")
-
-# return sentence_array = sentence.split( /\s+|\b/ )
-# return sentence_array = sentence.split( /\s+|\!|\-|\.|\,/ )
-# p sentence_array = sentence.split( /\s+|\b|\W/ )
-
-# wordified.each do |word|
-#   # binding.pry
-#   if vowel.include?(word[0])
-#     puts "Vowel word: #{word}"
-#   elsif word == /\W/
-#     puts word
-#   else
-#     puts change_consonant_starters(word)
-#   end
-# end
-
-
-# p wordified = wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!")
-# # p wordified.join("")
-#
-
-# puts wordify("HeLLo World! I can't wait to explore your VAST forests. The-End!")
+puts pig_latin(sentence)

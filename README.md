@@ -1,2 +1,1 @@
-# problems
-A collection of coding problems.
+### Pig Latin
