@@ -1,39 +1,5 @@
 # PSEUDOCODE
 
-# Example Input
-# XMJYAUZ
-# MZJAWXU
-
-
-def cs(string1, string2)
-  string1 = string1.split("")
-  string2 = string2.split("")
-  common_letter = ""
-  common_letter(string1, string2)
-end
-
-def common_letter(string1, string2)
-  string1.each do |char|
-    if string2.include(char)
-      common_letter = char
-    end
-  end
-  common_letter
-end
-
-def store_letters(common_letter, string1, string2)
-  a = [string1, string2]
-
-  a.each do |string|
-    cl_idx = string.index(common_letter)
-    while cl_idx < string.length
-      string.to_a
-      << string[cl_idx]
-  end
-
-
-
-
 # convert the strings to arrays
 
 # refer to the first character in the first string argument.
@@ -79,3 +45,32 @@ def store_letters(common_letter, string1, string2)
 # return longest_common_sub
 
 # end
+
+
+def cs(string1, string2)
+  string1 = string1.split("")
+  string2 = string2.split("")
+  common_letter = ""
+  common_letter(string1, string2)
+end
+
+def common_letter(string1, string2)
+  string1.each do |char|
+    if string2.include(char)
+      common_letter = char
+    end
+  end
+  common_letter
+end
+
+def store_letters(common_letter, string1, string2)
+  a = [string1, string2]
+
+  a.each do |string|
+    cl_idx = string.index(common_letter)
+    while cl_idx < string.length
+      string = string.to_a
+      array = []
+      array << string[cl_idx]
+      # unfinished
+  end
