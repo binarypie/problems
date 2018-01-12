@@ -21,27 +21,17 @@ class Essay
           @sentence = Sentence.new.generate
         else
           @paragraph << @sentence
+          binding.pry
           @sentence_lengths << @length_of_sentence
         end
+      end
       @essay << @paragraph
       binding.pry
-      end
-      puts @essay
     end
+    puts @essay
   end
 
 end
 
 essay = Essay.new(5, 6)
 essay.generate
-
-
-
-
-# sentence = Sentence.new
-# sentence.load_words({ noun_file: "EssayMonkeyNouns.txt",
-#                       verb_file: "EssayMonkeyVerbs.txt",
-#                       adj_file: "EssayMonkeyAdjectives.txt"
-#                     })
-# sentence.generate
-# print sentence.generate

@@ -8,10 +8,6 @@ class Sentence
     @nouns = Parser.parse("EssayMonkeyNouns.txt")
   end
 
-  # def load_words(args)
-  #
-  # end
-
   def generate
     return "#{@nouns.sample } #{@verbs.sample} #{@nouns.sample}."
   end
