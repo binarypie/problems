@@ -7,6 +7,6 @@ Run the following command in your terminal:
 ```
 ruby fibonacci(4)
 
-0, 1, 1, 2
+=> 0, 1, 1, 2
 
 ```
