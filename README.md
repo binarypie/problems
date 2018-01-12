@@ -12,7 +12,7 @@ ruby PigLatin.rb
 Hello!
 
 => Ellohay!
-   Enter another word or sentence to tranlate or type '1' to exit:
+   Enter another word or sentence to translate or type '1' to exit:
 
 1
 
