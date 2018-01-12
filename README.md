@@ -4,7 +4,7 @@ A collection of coding problems & solutions written by Nikita Ahuja using Ruby.
 
 To begin, you will need to have Ruby installed on your machine (https://www.ruby-lang.org/en/documentation/installation/).
 
-Next, you will need to clone this repository.
+Next, you will need to clone this repository. Each application will be run from the command line using the specified commands.
 
 ```
 
@@ -16,6 +16,16 @@ git clone https://github.com/nikita-ahuja/problems.git
 
 
 ## Fibonacci  (see 'fibonacci' branch for solution)
+
+This program uses recursive to provide the user the first n terms of the fibonacci sequence, provided as an argument.
+
+```
+ruby Fibonacci.rb(4)
+
+0, 0, 1, 1
+
+```
+
 
 
 ## Essay Monkey (see 'essay-monkey' branch for solution)
