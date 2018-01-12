@@ -14,6 +14,21 @@ git clone https://github.com/nikita-ahuja/problems.git
 
 ## Pig Latin (see 'pig-latin' branch for solution)
 
+This Command Line Application will pig-latinify a sentence or word of your choice.
+
+Run the following command in your terminal:
+
+```
+ruby PigLatin.rb
+
+=> Welcome to the Pig Latin Translator! Please enter a word or sentence you would like to translate. Type '1' to exit:
+Hello!
+=> Ellohay!
+=> Enter another word or sentence to tranlate or type '1' to exit: 
+1
+
+```
+
 
 ## Fibonacci  (see 'fibonacci' branch for solution)
 
@@ -37,13 +52,13 @@ This simple command line application will produce an essay using user input.
 ```
 ruby EssayMonkey.rb
 
-Welcome to the essay generator! How many paragraphs would you like your essay to have? Please enter an integer (i.e. 4).
+=> Welcome to the essay generator! How many paragraphs would you like your essay to have? Please enter an integer (i.e. 4).
 4
 
-Great! Your essay will contain 5 paragraphs. How many sentences would you like each paragraph to have? Please enter an integer (i.e. 5).
+=> Great! Your essay will contain 5 paragraphs. How many sentences would you like each paragraph to have? Please enter an integer (i.e. 5).
 5
 
-business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
+=> business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
 
 business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
 business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
