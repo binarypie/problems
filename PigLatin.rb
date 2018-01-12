@@ -6,9 +6,7 @@ require 'pry'
     return sentence_array = sentence.split(" ")
   end
 
-#Will the word be transformed? And if so, how?
-
-#WORD DETERMINER
+# WORD DETERMINER (#Will the word be transformed? And if so, how?)
 
   def determine_and_translate(word)
     vowels = ['a','e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
@@ -24,7 +22,7 @@ require 'pry'
     return word
   end
 
-  # ACTIONS TO FOLLOW DEPENDING ON TYPE OF WORD
+# ACTIONS TO FOLLOW DEPENDING ON TYPE OF WORD
 
   def change_consonant_starters(word)
     word_array = word.downcase.split("")
@@ -51,7 +49,7 @@ require 'pry'
     end
   end
 
-  # HELPER METHODS
+# HELPER METHODS
 
   def has_punctuation?
     true if word.include(/[[:punct:]]/)
@@ -66,8 +64,7 @@ require 'pry'
     word[-3..-1] == "way"
   end
 
-  # FINAL METHOD
-
+# FINAL METHOD
 
 def pig_latin(sentence)
   words = wordify(sentence)
@@ -84,11 +81,26 @@ def pig_latin(sentence)
   return final_sentence.join(" ")
 end
 
+# USER INTERFACE
 
-sentence = "HeLLo World! I can't wait to explore your VAST forests. The-End!"
+puts "Welcome to the Pig Latin Translator! Please enter a word or sentence you would like to translate. Type '1' to exit:"
+input = gets.chomp
+until input == "1"
+    puts pig_latin(input)
+    puts "Enter another word or sentence to tranlate or type '1' to exit: "
+    input = gets.chomp
+end
 
-puts determine_and_translate("Hello!")
-puts change_consonant_starters("Hello!")
-puts change_vowel_starters("Apple!")
-puts change_consonant_starters("Can't")
-puts pig_latin(sentence)
+
+
+
+# TEST CASES BELOW
+
+
+# sentence = "HeLLo World! I can't wait to explore your VAST forests. The-End!"
+# puts determine_and_translate("Hello!")
+# puts change_consonant_starters("Hello!")
+# puts change_vowel_starters("Apple!")
+# puts change_consonant_starters("Can't")
+# puts pig_latin(sentence)
+# puts pig_latin("Callaway")
