@@ -19,12 +19,15 @@ git clone https://github.com/nikita-ahuja/problems.git
 
 This program uses recursive to provide the user the first n terms of the fibonacci sequence, provided as an argument.
 
-```
-ruby Fibonacci.rb(4)
-
-0, 0, 1, 1
+Run the following command in your terminal:
 
 ```
+ruby fibonacci(4)
+
+0, 1, 1, 2
+
+```
+
 
 
 
