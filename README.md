@@ -14,8 +14,6 @@ git clone https://github.com/nikita-ahuja/problems.git
 
 ## Pig Latin (see 'pig-latin' branch for solution)
 
-## Pig Latin
-
 This Command Line Application will pig-latinify a sentence or word of your choice.
 
 Run the following command in your terminal:
