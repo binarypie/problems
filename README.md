@@ -61,14 +61,14 @@ ruby EssayMonkey.rb
 => Great! Your essay will contain 5 paragraphs. How many sentences would you like each paragraph to have? Please enter an integer (i.e. 5).
 5
 
-=> business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
+=> Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
-business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
-business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
+Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
-business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
+Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
-business helped father. research know hour. year believe part. health wake up parent. place buy girl. side played history. health sell time. team set result. team went man. student would mother. hand agreed educationent. water decided information.
+Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
+Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
 ```
