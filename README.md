@@ -19,6 +19,4 @@ Education spoke right. Result promised woman. Woman found force. World woke up w
 
 Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
 
-Education spoke right. Result promised woman. Woman found force. World woke up world. Educationent might side. Water happened law. Study needed man. Work agree fact. Life had night.
-
 ```
