@@ -33,7 +33,6 @@ class Essay
 
 end
 
-
 ######### RUNNER (CMD LINE) ############
 
 puts "Welcome to the essay generator! How many paragraphs would you like your essay to have? Please enter an integer (i.e. 4)."
