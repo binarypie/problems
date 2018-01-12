@@ -19,7 +19,7 @@ class Essay
         if (@sentence_lengths).include?(@length_of_sentence)
           @sentence = Sentence.new.generate
         else
-          @paragraph << @sentence
+          @paragraph << @sentence.capitalize
           @sentence_lengths << @length_of_sentence
         end
       end
