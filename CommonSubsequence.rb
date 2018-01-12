@@ -1,22 +1,25 @@
 # PSEUDOCODE
 
+# Example Input
+# XMJYAUZ
+# MZJAWXU
 
-def common_subsequence(string1, string2)
-longest_common_sub = ""
-final_string = []
-string1 = string1.split("")
-string2 = string2.split("")
-
-
-
-
-
+# convert the strings to arrays
 
 # refer to the first character in the first string argument.
+# => ['X', 'M', 'J', 'Y', 'A', 'U', 'Z']
 
 # if character is present in second string
 
-  # look at each string beginning from the common letter. Store the common letter, and all following letters into an array.
+  # => ['M', 'Z', 'J', 'A', 'W', 'X', 'U']
+
+  # set common_letter = common letter
+
+  # => common_letter = 'X'
+
+# end
+
+  # look at each string beginning from common letter. Store the common letter, and all following letters into an array.
 
   # XMJYAUZ
   # array1 = ['X', 'M', 'J', 'Y', 'A', 'U', 'Z']
@@ -43,7 +46,6 @@ string2 = string2.split("")
 
 # end
 
+# return longest_common_sub
 
-
-
-end
+# end
