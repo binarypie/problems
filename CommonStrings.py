@@ -1,6 +1,6 @@
 def main():
-    s1=raw_input("Enter first string:")
-    s2=raw_input("Enter second string:")
+    s1=raw_input("Enter first string: ")
+    s2=raw_input("Enter second string: ")
 
     lngstr=""
     shtstr=""
@@ -20,7 +20,7 @@ def main():
         just keep checking the next character in the string 
         until you find a difference
         '''
-        if shtstr[i] in lngstr[i:]:
+        if shtstr[i] in lngstr:
             start1=i
             start2=lngstr.index(shtstr[i])
             end1=start1; end2=start2
