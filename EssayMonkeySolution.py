@@ -1,6 +1,8 @@
+import random
+
 def main():
-    numPara=int(raw_input("How many paragraphs do you want "))
-    numSent=int(raw_input("How many sentences in each paragraph "))
+    numPara=int(raw_input("How many paragraphs do you want: "))
+    numSent=int(raw_input("How many sentences in each paragraph: "))
 
     #open files and read
     fverbs = open("EssayMonkeyVerbs.txt","r") 
@@ -15,51 +17,23 @@ def main():
     essay=str(strverbs)+str(stradj)+str(strnoun)
     essay=essay.replace(",", " ").replace("\t", " ").replace("\n", " ").replace("  ", " ")
 
-
-    ppess=len(essay)/numPara
-    eachpara=[]
-    craftpara=""
-    
-    for i in xrange(len(essay)):
-        craftpara+=essay[i]
-        if ((i+1)%ppess == 0):
-            craftpara=craftpara[0].upper()+str(craftpara[1:])
-            eachpara.append(craftpara)
-            craftpara=""
-
-    renewedpara=[]
-    for i in eachpara:
-        lenpara=len(i.split())
-        if (lenpara > numSent):
-            #each paragraph should have same number of sentences
-            renewedpara.append(" ".join(i.split()[0:numSent]))
-        else:
-            renewedpara.append(i) 
-
-    #finall work
-    complessay=[]
-    for i in renewedpara:
-        j=4
-        x=1
-        addPer=i.split()
-        #place periods after every few words starting from first 4th word
-        while j < len(addPer):
-            addPer[j]=addPer[j]+str(".") 
-            j+=(2*x)+3
-            x+=1
-        if (addPer[-1][-1]!="."):
-            complessay.append(str("\t")+" ".join(addPer)+str(".")+str("\n"))
-        else:
-            complessay.append(str("\t")+" ".join(addPer)+str("\n"))
-        
-    print("\n".join(complessay))#print refined essay to console
-
-    #print essay to .txt file
-    f = open("generatedEssay.txt","w") 
-    f.write("".join(complessay))
+    newessay="\t" #indent first word from first paragraph
+    for i in range(numPara):
+        j=0
+        esslis=essay.split(" ")
+        prepo=random.randint(0, 5)
+        nexpo=random.randint(5, 10)
+        #randomly select few number of 
+        #words after which we add a period
+        nesspara=""
+        while (j < numSent) and (nexpo < len(esslis)):
+            nesspara+=" ".join(esslis[prepo:nexpo])+str(". ")
+            temp=prepo
+            prepo=nexpo
+            nexpo+=(random.randint(temp, temp+random.randint(15, 20))) #randomly pick where to add periods
+            j+=1
+        newessay+=nesspara+str("\n\t")
+    return(newessay)
 
 if __name__ == "__main__":
-        main()
-
-
-
+        print(main())
