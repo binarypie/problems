@@ -32,7 +32,7 @@ Please run the python program with the following script:
 python Solution_PigLatin.py
 ```
 
-The program will prompt for a string to be translated to Pig Latin.
+The program will print out a default set of test strings translated into Pig Latin.
 
 
 ## Solution for Essay Monkey
