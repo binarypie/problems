@@ -36,11 +36,14 @@ The program will print out a default set of test strings translated into Pig Lat
 
 It seems that the original example output is missing a letter:
 
-	Example Input:
+```
+Example Input:
     "HeLLo World! I can't wait to explore your VAST forests. The-End!"
-    Example Output:
+
+Example Output:
     "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
- 																     orestsfay ** correction                                                      
+ 								     orestsfay ** correction                                   
+```                                                    
 
 
 ## Solution for Essay Monkey
