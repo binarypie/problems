@@ -15,7 +15,7 @@ Once you have the repository cloned, you can proceed to navigate to the 'problem
 
 ## Solution for Fibonacci
 
-Please run the python program with the following script:
+On branch fibonacci, please run the python program with the following script:
 
 ```
 python Solution_Fibonacci.py
@@ -26,7 +26,7 @@ The program will prompt for hte number of Fabonacci numbers to generate. Since n
 
 ## Solution for Pig Latin
 
-Please run the python program with the following script:
+On branch pig-latin, please run the python program with the following script:
 
 ```
 python Solution_PigLatin.py
@@ -48,7 +48,7 @@ Example Output:
 
 ## Solution for Essay Monkey
 
-Please run the python program with the following script:
+On branch essay-monkey, please run the python program with the following script:
 
 (solution 1, the algorithm reads chars one by one, should be more memory efficient)
 ```
