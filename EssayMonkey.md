@@ -11,3 +11,11 @@
     See EssayMonkeyVerbs.txt
     See EssayMonkeyNouns.txt
     See EssayMonkeyAdjectives.txt
+
+## Instructions 
+
+1. To run, you must provide the number of paragraphs and sentences per paragraph as command line arguments in that order. For example, to generate an essay with 3 paragraphs, and 5 sentences per paragraph: 
+
+	``` 
+	python essay_monkey.py 3 5
+	```
