@@ -17,3 +17,13 @@
 ## Example Output ##
 
     "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
+
+## Instructions
+
+1. Change the 'english_text' variable inside pig_latin.py to whatever sentence you want to convert.
+
+2. To start, just run pig_latin.py, eg:
+
+```
+python pig_latin.py
+```
