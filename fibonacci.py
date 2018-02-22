@@ -1,7 +1,7 @@
 # Library imports
 import sys
 
-# Return the Fibonacci series up to :n as a string
+# Return the Fibonacci series up to the :n-th place, as a string
 def F(n):
 	if n < 3:
 		return ["0","1"][:n]
