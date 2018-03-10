@@ -8,13 +8,18 @@ Fibonacci Sequence
 
 ## Pig Latin ##
 files changed: 
+
 	PigLatin.md      readMe file
+
 files added:
+
 	pigLatin.py      python program solution
 
 
 How to run:
+
 Must have Python Idle Installed
+
 Version: Python 3.6.3
 
 1. Open terminal
@@ -25,17 +30,26 @@ Version: Python 3.6.3
 
 ## Essay Monkey ##
 files changed: 
+
 	EssayMonkey.md      readMe file
+
 files added:	
+
 	essayMonkey.py      python program solution
+
 required files:
+
 	EssayMoneyAdjectives.txt
+
 	EssayMonKeyNouns.txt
+
 	EssayMonkeyVerbs.txt
 
 
 How to run:
+
 Must have Python Idle Installed
+
 Version: Python 3.6.3
 
 1. Open terminal
@@ -46,13 +60,18 @@ Version: Python 3.6.3
 ## Fibonacci Sequence ##
 
 files changed: 
+
 	Fibonacci.md      readMe file
+
 files added:	
+
 	fibonacci.py      python program solution
 
 
 How to run:
+
 Must have Python Idle Installed
+
 Version: Python 3.6.3
 
 1. Open terminal
