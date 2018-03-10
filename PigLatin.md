@@ -25,7 +25,9 @@
 	See pigLatin.py
 
 ## How to Run ##
+
 Must have Python Idle Installed
+
 Version: Python 3.6.3
 
 ```

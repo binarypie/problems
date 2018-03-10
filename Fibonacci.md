@@ -21,8 +21,11 @@ defined as 0 and 1.
 	See fibonacci.py
 
 ## How to Run ##
+
 Must have Python Idle Installed
+
 Version: Python 3.6.3
+
 ```
 1. Open terminal
 2. Navigate to the file directory
