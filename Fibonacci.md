@@ -15,3 +15,17 @@ defined as 0 and 1.
 ## Example Output ##
 
     0, 1, 1, 2, 3
+
+##Solution
+
+	See fibonacci.py
+
+## How to Run ##
+Must have Python Idle Installed
+Version: Python 3.6.3
+```
+1. Open terminal
+2. Navigate to the file directory
+3. Run on terminal: python3 fibonacci.py
+4. The terminal will ask you to input the length of the fibonacci sequence, enter a number
+```

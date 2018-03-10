@@ -10,10 +10,28 @@
 * Capitalization must remain in the same place.
 * Single letters are not modified.
 
+
 ## Example Input ##
 
     "HeLLo World! I can't wait to explore your VAST forests. The-End!"
 
 ## Example Output ##
 
-    "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
+    "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestsfay. Hetay-Endway!"
+
+
+## Solution ##
+
+	See pigLatin.py
+
+## How to Run ##
+Must have Python Idle Installed
+Version: Python 3.6.3
+
+```
+1. Open terminal
+2. Navigate to the file directory
+3. Run on terminal: python3 pigLatin.py
+4. The terminal will ask you to input a string, enter what you may like
+```
+
