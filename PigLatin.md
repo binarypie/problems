@@ -16,4 +16,4 @@
 
 ## Example Output ##
 
-    "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestfay. Hetay-Endway!"
+    "ElLOhay Orldway! I antca'y aitway otay exploreway ouryay ASTVay orestsfay. Hetay-Endway!"
